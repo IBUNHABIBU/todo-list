@@ -1,0 +1,24 @@
+{
+  "name": "todolist",
+  "version": "1.0.0",
+  "description": "any do clone",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start:dev": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IBUNHABIBU/todo-list.git"
+  },
+  "author": "Ibunhabib",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IBUNHABIBU/todo-list/issues"
+  },
+  "homepage": "https://github.com/IBUNHABIBU/todo-list#readme",
+  "devDependencies": {
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  }
+}
