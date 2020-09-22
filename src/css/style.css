@@ -32,6 +32,37 @@ header{
   width: 20%;
 }
 .new-project-input{
-  border-radius: 1.2rem;
-  height: 1.2rem;
+  border-radius: 6px;
+  height: 2rem;
+  background: #efefef;
+  width: 100%;
+  position: relative;
+  top: 2rem;
+}
+article{
+  position: relative;
+  top: 8rem;
+  left: 8rem;
+  width: 30%;
+  height: 8rem;
+  background: white;
+  border-radius: 6px;
+  padding: 8rem;
+}
+.new-project-btns{
+ width: 100%;
+ height: 100%;
+ 
+}
+.new-project-btns button{
+  width: 49%;
+  height: 50%;
+  position: relative;
+  top: 2rem;
+  border: none;
+  background: white;
+  border-right: 2px solid #efefef;
+}
+.new-project-btns button:hover{
+  background: #efefef;
 }
