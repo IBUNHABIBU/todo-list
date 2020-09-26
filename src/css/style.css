@@ -54,6 +54,7 @@ article{
   background: white;
   border-radius: 6px;
   padding: 8rem;
+  display: none;
 }
 
 .new-project-btns{
@@ -79,4 +80,11 @@ article{
 }
 input:focus{
   
+}
+aside{
+  padding: 4rem;
+  background: white;
+  width: 40%;
+  position: relative;
+  top: 4rem;
 }
