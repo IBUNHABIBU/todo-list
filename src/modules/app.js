@@ -1,6 +1,6 @@
 import '../css/style.css';
 function Tasker() {
-  const taskInput = document.getElementById('title');
+    const taskInput = document.getElementById('title');
     const taskList = document.getElementById('tasks');
     const taskListChildren = taskList.children;
     const addButton = document.getElementById('add-task-btn');
@@ -8,6 +8,7 @@ function Tasker() {
     function construct(){
     bindEvent();
     scanTaskList();
+    console.log(taskListChildren);
     }
   
    function buildTask(){
@@ -68,6 +69,7 @@ function Tasker() {
  function  completeTask(taskListItem, checkBox){
     if(checkBox.checked){
       taskListItem.className = 'task completed';
+      console.log("hello");
     } else {
       incompleteTask(taskListItem);
     }
@@ -75,7 +77,7 @@ function Tasker() {
   function incompleteTask(taskListItem){
     taskListItem.className = 'task';
   }
-  return { construct }
+  return { construct, completeTask, incompleteTask, buildTask, deleteTask }
 }
 const todo = Tasker();
 todo.construct();

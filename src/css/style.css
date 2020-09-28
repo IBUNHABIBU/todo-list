@@ -89,3 +89,8 @@ aside{
   top: 4rem;
   margin: 1rem;
 }
+
+.task.completed{
+  background-color: blueviolet;
+  color: red;
+}
