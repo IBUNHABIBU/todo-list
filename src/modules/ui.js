@@ -1,4 +1,3 @@
-import '../css/style.css';
 let tasker = {
   construct: function(){
     this.selectedElement();
@@ -6,7 +5,7 @@ let tasker = {
     this.scanTaskList();
   },
   selectedElement: function (){
-    this.taskInput = document.getElementById('title');
+    this.taskInput = document.getElementById('input-task');
     this.taskList = document.getElementById('tasks');
     this.taskListChildren = this.taskList.children;
     this.addButton = document.getElementById('add-task-btn');
@@ -29,12 +28,12 @@ let tasker = {
     taskListItem.appendChild(taskButton);
     this.taskList.appendChild(taskListItem);
   }, 
-  // error: function(){
-  //   this.errorMessage.style.display = 'block';
-  // },
+  error: function(){
+    this.errorMessage.style.display = 'block';
+  },
   addTask: function() {
     let taskValue = this.taskInput.value;
-    // this.errorMessage.style.display = 'none';
+    this.errorMessage.style.display = 'none';
     if(taskValue === ''){
       this.error();
     } else {
@@ -54,7 +53,7 @@ let tasker = {
   }, 
   scanTaskList: function(){
     let taskListItem, checkBox, deleteButton;
-    for( let i = 0; i< this.taskListChildren.length; i++){
+    for( i = 0; i< this.taskListChildren.length; i++){
       taskListItem = this.taskListChildren[i];
       checkBox = taskListItem.getElementsByTagName('input')[0];
       deleteButton = taskListItem.getElementsByTagName('button')[0];
@@ -78,4 +77,3 @@ let tasker = {
     taskListItem.className = 'task';
   }
 }
-tasker.construct();
