@@ -1,24 +1,22 @@
 import '../css/style.css';
-let tasker = {
-  construct: function(){
-    this.selectedElement();
-    this.bindEvent();
-    this.scanTaskList();
-  },
-  selectedElement: function (){
-    this.taskInput = document.getElementById('title');
-    this.taskList = document.getElementById('tasks');
-    this.taskListChildren = this.taskList.children;
-    this.addButton = document.getElementById('add-task-btn');
-    this.errorMessage = document.getElementById('error');
-  },
-  buildTask: function(){
+function Tasker() {
+  const taskInput = document.getElementById('title');
+    const taskList = document.getElementById('tasks');
+    const taskListChildren = taskList.children;
+    const addButton = document.getElementById('add-task-btn');
+
+    function construct(){
+    bindEvent();
+    scanTaskList();
+    }
+  
+   function buildTask(){
     let taskListItem, taskCheckBox, taskValue, taskButton, taskTrash;
     taskListItem = document.createElement('li');
     taskListItem.setAttribute('class', 'task');
     taskCheckBox = document.createElement('input');
     taskCheckBox.setAttribute('type','checkbox');
-    taskValue = document.createTextNode(this.taskInput.value);
+    taskValue = document.createTextNode(taskInput.value);
     taskButton = document.createElement('button');
     taskTrash = document.createElement('i');
     taskButton.className = 'btn-trash';
@@ -27,55 +25,57 @@ let tasker = {
     taskListItem.appendChild(taskCheckBox);
     taskListItem.appendChild(taskValue);
     taskListItem.appendChild(taskButton);
-    this.taskList.appendChild(taskListItem);
-  }, 
+    taskList.appendChild(taskListItem);
+  }
   // error: function(){
-  //   this.errorMessage.style.display = 'block';
+  //   errorMessage.style.display = 'block';
   // },
-  addTask: function() {
-    let taskValue = this.taskInput.value;
-    // this.errorMessage.style.display = 'none';
+  function addTask() {
+    let taskValue = taskInput.value;
+    // errorMessage.style.display = 'none';
     if(taskValue === ''){
-      this.error();
+      error();
     } else {
-      this.buildTask();
-      this.taskInput.value = '';
-      this.scanTaskList();
+      buildTask();
+      taskInput.value = '';
+      scanTaskList();
     }
-  }, 
-  enterKey: function(e){
+  }
+  function enterKey(e){
     if(e.keyCode === 13 ){
-      this.addTask();
+      addTask();
     }
-  }, 
-  bindEvent: function(){
-    this.addButton.onclick= this.addTask.bind(this);
-    this.taskInput.onkeypress = this.enterKey.bind(this);
-  }, 
-  scanTaskList: function(){
+  }
+   function bindEvent(){
+    addButton.onclick= addTask.bind();
+    taskInput.onkeypress = enterKey.bind(this);
+  }
+  function  scanTaskList(){
     let taskListItem, checkBox, deleteButton;
-    for( let i = 0; i< this.taskListChildren.length; i++){
-      taskListItem = this.taskListChildren[i];
+    for( let i = 0; i< taskListChildren.length; i++){
+      taskListItem = taskListChildren[i];
       checkBox = taskListItem.getElementsByTagName('input')[0];
       deleteButton = taskListItem.getElementsByTagName('button')[0];
-      checkBox.onclick = this.completeTask.bind(this, taskListItem, checkBox);
-      deleteButton.onclick = this.deleteTask.bind(this, i);
+      checkBox.onclick = completeTask.bind( taskListItem, checkBox);
+      deleteButton.onclick = deleteTask.bind( i);
 
     }
-  },
-  deleteTask: function(i){
-    this.taskListChildren[i].remove();
-    this.scanTaskList();
-  }, 
-  completeTask: function(taskListItem, checkBox){
+  }
+  function deleteTask(i){
+    taskListChildren[i].remove();
+    scanTaskList();
+  }
+ function  completeTask(taskListItem, checkBox){
     if(checkBox.checked){
       taskListItem.className = 'task completed';
     } else {
-      this.incompleteTask(taskListItem);
+      incompleteTask(taskListItem);
     }
-  },
-  incompleteTask: function(taskListItem){
+  }
+  function incompleteTask(taskListItem){
     taskListItem.className = 'task';
   }
+  return { construct }
 }
-tasker.construct();
+const todo = Tasker();
+todo.construct();
