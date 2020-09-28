@@ -52,14 +52,13 @@ function Tasker() {
     taskInput.onkeypress = enterKey.bind(this);
   }
   function  scanTaskList(){
-    let taskListItem, checkBox, deleteButton;
+    let taskListItem, checkBox = , deleteButton;
     for( let i = 0; i< taskListChildren.length; i++){
       taskListItem = taskListChildren[i];
       checkBox = taskListItem.getElementsByTagName('input')[0];
       deleteButton = taskListItem.getElementsByTagName('button')[0];
-      checkBox.onclick = completeTask.bind( taskListItem, checkBox);
-      deleteButton.onclick = deleteTask.bind( i);
-
+      checkBox.onclick = completeTask.bind(taskListItem, checkBox);
+      deleteButton.onclick = deleteTask.bind(i);
     }
   }
   function deleteTask(i){
