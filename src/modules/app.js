@@ -1,13 +1,15 @@
 import '../css/style.css';
 function Tasker() {
     const taskInput = document.getElementById('title');
+    const taskDescription = document.getElementById('description');
+    const taskDate = document.getElementById('datetime');
     const taskList = document.getElementById('tasks');
     const taskListChildren = taskList.children;
     const addButton = document.getElementById('add-task-btn');
 
     function construct(){
-    bindEvent();
-    scanTaskList();
+      bindEvent();
+      scanTaskList();
     }
   
    function buildTask(){
@@ -17,6 +19,8 @@ function Tasker() {
     taskCheckBox = document.createElement('input');
     taskCheckBox.setAttribute('type','checkbox');
     taskValue = document.createTextNode(taskInput.value);
+    const descriptionValue = document.createTextNode(taskDescription.value);
+    const dateValue = document.createTextNode(taskDate.value);
     taskButton = document.createElement('button');
     taskTrash = document.createElement('i');
     taskButton.className = 'btn-trash';

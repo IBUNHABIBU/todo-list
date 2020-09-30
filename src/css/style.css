@@ -19,10 +19,6 @@ body{
 
 .fa-plus{ margin-right: 1rem; }
 
-li{
-  list-style: none;
-  margin-bottom: 1rem;
-}
 
 main{
   background-image: url(../images/bg.jpg);
@@ -85,7 +81,7 @@ article{
 }
 
 aside{
-  /* padding: 4rem; */
+  padding: 4rem; 
   background: white;
   width: 100%;
   height: 100vh;
@@ -107,4 +103,24 @@ form input{
 }
 input[type='date']::before {
   content: attr(placeholder);
+}
+#datetime::placeholder{
+  color: red;
+}
+li{
+  border-top: 1px solid #efefef;
+  padding: 1rem;
+  list-style: none;
+  /* margin-bottom: 1rem; */
+  display: flex;
+  justify-content: space-between;
+}
+.btn-trash{
+  border: none;
+  background: none;
+}
+.fa-trash{
+  float: right;
+  position: relative;
+  right: 0;
 }
