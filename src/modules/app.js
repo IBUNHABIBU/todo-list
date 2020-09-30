@@ -18,18 +18,24 @@ function Tasker() {
     taskListItem.setAttribute('class', 'task');
     taskCheckBox = document.createElement('input');
     taskCheckBox.setAttribute('type','checkbox');
-    taskValue = document.createTextNode(taskInput.value);
-    const descriptionValue = document.createTextNode(taskDescription.value);
-    const dateValue = document.createTextNode(taskDate.value);
+    taskValue = taskInput.value;
+    const taskElement = document.createElement('span');
+    taskElement.innerHTML = taskValue;
+    const descriptionValue = taskDescription.value;
+    const descriptionElement = document.createElement('span');
+    descriptionElement.innerHTML = descriptionValue;
+    const dateValue = taskDate.value;
+    const dateElement = document.createElement('span');
+    dateElement.innerHTML = dateValue;
     taskButton = document.createElement('button');
     taskTrash = document.createElement('i');
     taskButton.className = 'btn-trash';
     taskTrash.setAttribute('class','fa fa-trash');
     taskButton.appendChild(taskTrash);
     taskListItem.appendChild(taskCheckBox);
-    taskListItem.appendChild(taskValue);
-    taskListItem.appendChild(descriptionValue);
-    taskListItem.appendChild(dateValue)
+    taskListItem.appendChild(taskElement);
+    taskListItem.appendChild(descriptionElement);
+    taskListItem.appendChild(dateElement)
     taskListItem.appendChild(taskButton);
     taskList.appendChild(taskListItem);
   }
@@ -72,7 +78,16 @@ function Tasker() {
       })
     }
   }
-  
+  const newProject = document.querySelector('[data-new-project]');
+  newProject.addEventListener('submit', function(e){
+    e.preventDefault();
+    const inputValue = document.querySelector('[data-new-input]').value;
+    const li = document.createElement('li');
+    li.innerHTML = inputValue;
+    const projectList = document.querySelector('.project-list');
+    projectList.appendChild(li);
+
+  })
   return { construct,  buildTask }
 }
 const todo = Tasker();

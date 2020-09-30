@@ -9,30 +9,34 @@
 </head>
 <body >
   <header>
-    <nav>
-     <h1>Any do clone</h1>
-     <button type="submit" class="project-create-btn"><i class="fa fa-plus"></i><span class="create-btn">Create Project</span> </button>
-     
-       <h2>Project</h2>
+    <!-- <nav> -->
+      <div class="heading">
+        <h1 class="display-8 text-center text-primary">2Do App</h1>
+        
+          <h3 class="display-8 text-center text-info">Projects</h2>
+      </div>
+    
        
-     <ul>
+     <ul class="project-list">
        <li>Domestic work</li>
        <li>Workout</li>
        <li>Learning</li>
        <li>Job</li>
-       <li></li>
      </ul>
-    </nav>
+     <form action="" data-new-project >
+      <input 
+        type="text"
+        class="new list"
+        placeholder="add new project"
+        aria-label="new list name"
+        data-new-input
+      />
+      <button class="btn create" aria-label="create new list">+</button>
+    </form>
+    <!-- </nav> -->
   </header>
   <main>
       <section>
-          <article>
-            <input type="text" class="new-project-input">
-            <div class="new-project-btns">
-            <button type="submit">Cancel</button>
-            <button type="submit">Submit</button>
-            </div>
-          </article>
         <aside>
           <h3 class="project-title">Welcome</h3>
           <div class="form-container">
