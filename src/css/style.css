@@ -78,19 +78,24 @@ article{
 .new-project-btns button:hover{
   background: #efefef;
 }
-input:focus{
-  
-}
-aside{
-  padding: 4rem;
-  background: white;
-  width: 40%;
-  position: relative;
-  top: 4rem;
-  margin: 1rem;
-}
 
 .task.completed{
   background-color: blueviolet;
   color: red;
+}
+
+aside{
+  /* padding: 4rem; */
+  background: white;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  top: 4rem;
+  margin: 1rem;
+}
+.form-container{
+  padding: 1rem;
+}
+form input{
+  border: 1px solid red;
 }

@@ -27,12 +27,9 @@ function Tasker() {
     taskListItem.appendChild(taskButton);
     taskList.appendChild(taskListItem);
   }
-  // error: function(){
-  //   errorMessage.style.display = 'block';
-  // },
+  
   function addTask() {
     let taskValue = taskInput.value;
-    // errorMessage.style.display = 'none';
     if(taskValue === ''){
       error();
     } else {
@@ -55,12 +52,7 @@ function Tasker() {
     for( let i = 0; i< taskListChildren.length; i++){
       taskListItem = taskListChildren[i];
       checkBox = taskListItem.getElementsByTagName('input')[0];
-      //  console.log(checkBox)
       deleteButton = taskListItem.getElementsByTagName('button')[0];
-      
-      // deleteButton.onclick = deleteTask.bind(i);
-      // let Checked = checkBox.checked;
-      // console.log(Checked);
       checkBox.addEventListener('click', function(e){
         if(e.target.checked){
           e.target.parentElement.classList.add('completed');
@@ -68,24 +60,13 @@ function Tasker() {
           e.target.parentElement.classList.remove('completed');
         }
       })
+      deleteButton.addEventListener('click', function(e){
+         taskListItem.remove();
+      })
     }
   }
-  function deleteTask(i){
-    taskListChildren[i].remove();
-    scanTaskList();
-  }
- function  completeTask(taskListItem, checkBox){
-    if(checkBox.checked){
-      taskListItem.className = 'task completed';
-    
-    } else {
-      incompleteTask(taskListItem);
-    }
-  }
-  function incompleteTask(taskListItem){
-    taskListItem.className = 'task';
-  }
-  return { construct, completeTask, incompleteTask, buildTask, deleteTask }
+  
+  return { construct,  buildTask }
 }
 const todo = Tasker();
 todo.construct();
