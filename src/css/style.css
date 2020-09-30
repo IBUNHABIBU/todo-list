@@ -97,5 +97,14 @@ aside{
   padding: 1rem;
 }
 form input{
-  border: 1px solid red;
+  border: 1px solid  #efefef;
+  background: rgb(240, 240, 240);
+  height: 2.2rem;
+  outline: none;
+}
+#datetime{
+  width: 8rem;
+}
+input[type='date']::before {
+  content: attr(placeholder);
 }

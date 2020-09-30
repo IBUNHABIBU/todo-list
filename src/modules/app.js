@@ -30,6 +30,7 @@ function Tasker() {
   
   function addTask() {
     let taskValue = taskInput.value;
+    // errorMessage.style.display = 'none';
     if(taskValue === ''){
       error();
     } else {
