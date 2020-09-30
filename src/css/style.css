@@ -104,9 +104,6 @@ form input{
 input[type='date']::before {
   content: attr(placeholder);
 }
-#datetime::placeholder{
-  color: red;
-}
 li{
   border-top: 1px solid #efefef;
   padding: 1rem;
@@ -123,4 +120,5 @@ li{
   float: right;
   position: relative;
   right: 0;
+  color: #9c9c9c;
 }

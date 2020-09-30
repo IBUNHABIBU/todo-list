@@ -28,6 +28,8 @@ function Tasker() {
     taskButton.appendChild(taskTrash);
     taskListItem.appendChild(taskCheckBox);
     taskListItem.appendChild(taskValue);
+    taskListItem.appendChild(descriptionValue);
+    taskListItem.appendChild(dateValue)
     taskListItem.appendChild(taskButton);
     taskList.appendChild(taskListItem);
   }
