@@ -8,7 +8,6 @@ function Tasker() {
     function construct(){
     bindEvent();
     scanTaskList();
-    console.log(taskListChildren);
     }
   
    function buildTask(){
@@ -52,13 +51,23 @@ function Tasker() {
     taskInput.onkeypress = enterKey.bind(this);
   }
   function  scanTaskList(){
-    let taskListItem, checkBox = , deleteButton;
+    let taskListItem, checkBox , deleteButton;
     for( let i = 0; i< taskListChildren.length; i++){
       taskListItem = taskListChildren[i];
       checkBox = taskListItem.getElementsByTagName('input')[0];
+      //  console.log(checkBox)
       deleteButton = taskListItem.getElementsByTagName('button')[0];
-      checkBox.onclick = completeTask.bind(taskListItem, checkBox);
-      deleteButton.onclick = deleteTask.bind(i);
+      
+      // deleteButton.onclick = deleteTask.bind(i);
+      // let Checked = checkBox.checked;
+      // console.log(Checked);
+      checkBox.addEventListener('click', function(e){
+        if(e.target.checked){
+          e.target.parentElement.classList.add('completed');
+        } else {
+          e.target.parentElement.classList.remove('completed');
+        }
+      })
     }
   }
   function deleteTask(i){
@@ -68,7 +77,7 @@ function Tasker() {
  function  completeTask(taskListItem, checkBox){
     if(checkBox.checked){
       taskListItem.className = 'task completed';
-      console.log("hello");
+    
     } else {
       incompleteTask(taskListItem);
     }
