@@ -112,31 +112,31 @@ projectList.addEventListener('click', e => {
 })
   newProject.addEventListener('submit', function(e){
     e.preventDefault();
-    const input = document.querySelector('[data-new-input]');
-    const inputValue = input.value;
+    const projectInput = document.querySelector('[data-new-input]');
+    const inputValue = projectInput.value;
     if(inputValue === null || inputValue === '') return;
     const list = createProject(inputValue);
+    projectInput.value = null;
     lists.push(list);
-    input.value = null;
-    const li = document.createElement('li');
-    li.innerText = inputValue;
-    projectList.appendChild(li);
+    addProject();
   })
   function createProject(projectName){
     return { id: Date.now().toString(), name: projectName, todos: [] }
   }
 function addProject(){
+  clearPrevious(projectList);
     lists.forEach(list =>{
       const li = document.createElement('li');
       li.dataset.listId = list.id;
       li.innerText = list.name;
-      console.log(li);
-    const projectList = document.querySelector('.project-list');
     projectList.appendChild(li);
-    if(list.id === selectedListId){
-      li.classList.add('selected');
-    }
+ 
     })
+}
+function clearPrevious(projectList){
+  while (projectList.firstChild) {
+    projectList.removeChild(projectList.firstChild)
+  }
 }
 addProject();
   return { construct,  buildTask }
