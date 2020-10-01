@@ -132,7 +132,7 @@ function addProject(){
       li.dataset.listId = list.id;
       li.innerText = list.name;
       projectList.appendChild(li);
- 
+      if(list.id)
     })
     save();
 }
