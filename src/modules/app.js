@@ -4,7 +4,12 @@ function Tasker() {
     const taskDescription = document.getElementById('description');
     const taskDate = document.getElementById('datetime');
     const taskList = document.getElementById('tasks');
+    const projectList = document.querySelector('.project-list');
+
+    const KEY = 'todolist';
+    const SELECTED_ID_KEY = 'selectedListId';
     
+    let selectedListId;
     const taskListChildren = taskList.children;
     const addButton = document.getElementById('add-task-btn');
     function construct(){
@@ -88,14 +93,6 @@ function Tasker() {
     }
   }
   const newProject = document.querySelector('[data-new-project]');
-  newProject.addEventListener('submit', function(e){
-    e.preventDefault();
-    const inputValue = document.querySelector('[data-new-input]').value;
-    const li = document.createElement('li');
-    li.innerText = inputValue;
-    const projectList = document.querySelector('.project-list');
-    projectList.appendChild(li);
-  })
   
   let lists = [{
     id: 2,
@@ -106,12 +103,39 @@ function Tasker() {
     name: "Blum"
   }
 ];
+projectList.addEventListener('click', e => {
+  if (e.target.tagName.toLowerCase() === 'li') {
+    // e.target.id = selectedListId;
+    e.target.dataset.listId = selectedListId;
+
+  }
+})
+  newProject.addEventListener('submit', function(e){
+    e.preventDefault();
+    const input = document.querySelector('[data-new-input]');
+    const inputValue = input.value;
+    if(inputValue === null || inputValue === '') return;
+    const list = createProject(inputValue);
+    lists.push(list);
+    input.value = null;
+    const li = document.createElement('li');
+    li.innerText = inputValue;
+    projectList.appendChild(li);
+  })
+  function createProject(projectName){
+    return { id: Date.now().toString(), name: projectName, todos: [] }
+  }
 function addProject(){
     lists.forEach(list =>{
       const li = document.createElement('li');
+      li.dataset.listId = list.id;
       li.innerText = list.name;
+      console.log(li);
     const projectList = document.querySelector('.project-list');
     projectList.appendChild(li);
+    if(list.id === selectedListId){
+      li.classList.add('selected');
+    }
     })
 }
 addProject();
