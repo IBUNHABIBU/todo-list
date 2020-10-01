@@ -4,15 +4,16 @@ function Tasker() {
     const taskDescription = document.getElementById('description');
     const taskDate = document.getElementById('datetime');
     const taskList = document.getElementById('tasks');
+    
     const taskListChildren = taskList.children;
     const addButton = document.getElementById('add-task-btn');
-
     function construct(){
       bindEvent();
       scanTaskList();
     }
   
    function buildTask(){
+    const priority = document.querySelector('input[name="priority"]:checked').value;
     let taskListItem, taskCheckBox, taskValue, taskButton, taskTrash;
     taskListItem = document.createElement('li');
     taskListItem.setAttribute('class', 'task');
@@ -31,13 +32,21 @@ function Tasker() {
     taskTrash = document.createElement('i');
     taskButton.className = 'btn-trash';
     taskTrash.setAttribute('class','fa fa-trash');
+
+    
+    
+    const priorityElement = document.createElement('span');
+    priorityElement.innerHTML = priority;
     taskButton.appendChild(taskTrash);
     taskListItem.appendChild(taskCheckBox);
     taskListItem.appendChild(taskElement);
     taskListItem.appendChild(descriptionElement);
     taskListItem.appendChild(dateElement)
+    
+    taskListItem.appendChild(priorityElement)
     taskListItem.appendChild(taskButton);
     taskList.appendChild(taskListItem);
+    
   }
   
   function addTask() {
@@ -83,11 +92,29 @@ function Tasker() {
     e.preventDefault();
     const inputValue = document.querySelector('[data-new-input]').value;
     const li = document.createElement('li');
-    li.innerHTML = inputValue;
+    li.innerText = inputValue;
     const projectList = document.querySelector('.project-list');
     projectList.appendChild(li);
-
   })
+  
+  let lists = [{
+    id: 2,
+    name: "joro"
+  },
+  {
+    id: 4,
+    name: "Blum"
+  }
+];
+function addProject(){
+    lists.forEach(list =>{
+      const li = document.createElement('li');
+      li.innerText = list.name;
+    const projectList = document.querySelector('.project-list');
+    projectList.appendChild(li);
+    })
+}
+addProject();
   return { construct,  buildTask }
 }
 const todo = Tasker();

@@ -114,7 +114,7 @@ li{
   padding: 1rem;
   list-style: none;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .btn-trash{
   border: none;
