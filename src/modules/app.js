@@ -6,10 +6,11 @@ function Tasker() {
     const taskList = document.getElementById('tasks');
     const projectList = document.querySelector('.project-list');
 
-    const KEY = 'todolist';
-    const SELECTED_ID_KEY = 'selectedListId';
+    const LOCAL_STORAGE_LIST_KEY = 'task.lists'
+    const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId'
+    let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || []
+    let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY)
     
-    let selectedListId;
     const taskListChildren = taskList.children;
     const addButton = document.getElementById('add-task-btn');
     function construct(){
@@ -94,15 +95,15 @@ function Tasker() {
   }
   const newProject = document.querySelector('[data-new-project]');
   
-  let lists = [{
-    id: 2,
-    name: "joro"
-  },
-  {
-    id: 4,
-    name: "Blum"
-  }
-];
+//   let lists = [{
+//     id: 2,
+//     name: "joro"
+//   },
+//   {
+//     id: 4,
+//     name: "Blum"
+//   }
+// ];
 projectList.addEventListener('click', e => {
   if (e.target.tagName.toLowerCase() === 'li') {
     // e.target.id = selectedListId;
@@ -119,6 +120,7 @@ projectList.addEventListener('click', e => {
     projectInput.value = null;
     lists.push(list);
     addProject();
+    save();
   })
   function createProject(projectName){
     return { id: Date.now().toString(), name: projectName, todos: [] }
@@ -129,9 +131,10 @@ function addProject(){
       const li = document.createElement('li');
       li.dataset.listId = list.id;
       li.innerText = list.name;
-    projectList.appendChild(li);
+      projectList.appendChild(li);
  
     })
+    save();
 }
 function clearPrevious(projectList){
   while (projectList.firstChild) {
@@ -139,6 +142,12 @@ function clearPrevious(projectList){
   }
 }
 addProject();
+
+function save() {
+  localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists))
+  localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId)
+}
+
   return { construct,  buildTask }
 }
 const todo = Tasker();
