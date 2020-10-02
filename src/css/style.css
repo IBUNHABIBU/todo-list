@@ -172,3 +172,7 @@ li{
   font-weight: bolder;
   color: red;
 }
+.project-title{
+  display: flex;
+  justify-content: space-between;
+}

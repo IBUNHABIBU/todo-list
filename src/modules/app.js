@@ -10,7 +10,7 @@ function Tasker() {
     const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId'
     let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || []
     let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY)
-    
+    console.log(selectedListId)
     const taskListChildren = taskList.children;
     const addButton = document.getElementById('add-task-btn');
     function construct(){
@@ -107,8 +107,9 @@ function Tasker() {
 projectList.addEventListener('click', e => {
   if (e.target.tagName.toLowerCase() === 'li') {
     // e.target.id = selectedListId;
-    e.target.dataset.listId = selectedListId;
-
+     selectedListId = e.target.dataset.listId;
+     save();
+     addProject();
   }
 })
   newProject.addEventListener('submit', function(e){
@@ -132,7 +133,10 @@ function addProject(){
       li.dataset.listId = list.id;
       li.innerText = list.name;
       projectList.appendChild(li);
-      if(list.id)
+      if(list.id === selectedListId){
+        li.classList.add('selected');
+        console.log("list")
+      }
     })
     save();
 }
@@ -147,7 +151,7 @@ function save() {
   localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists))
   localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId)
 }
-
+console.log(selectedListId)
   return { construct,  buildTask }
 }
 const todo = Tasker();
