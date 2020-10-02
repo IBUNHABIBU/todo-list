@@ -126,6 +126,7 @@ projectList.addEventListener('click', e => {
   function createProject(projectName){
     return { id: Date.now().toString(), name: projectName, todos: [] }
   }
+  
 function addProject(){
   clearPrevious(projectList);
     lists.forEach(list =>{
