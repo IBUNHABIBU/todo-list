@@ -172,7 +172,7 @@ li{
   font-weight: bolder;
   color: red;
 }
-.project-title{
+.project-title-container{
   display: flex;
   justify-content: space-between;
 }
