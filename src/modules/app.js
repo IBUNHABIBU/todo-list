@@ -5,7 +5,7 @@ function Tasker() {
     const taskDate = document.getElementById('datetime');
     const taskList = document.getElementById('tasks');
     const projectList = document.querySelector('.project-list');
-
+    const deleteProjectBtn = document.querySelector('[data-delete-project]')
     const LOCAL_STORAGE_LIST_KEY = 'task.lists'
     const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId'
     let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || []
@@ -17,7 +17,13 @@ function Tasker() {
       bindEvent();
       scanTaskList();
     }
-  
+   deleteProjectBtn.addEventListener('click', e => {
+     e.preventDefault();
+     lists = lists.filter( list => list.id !== selectedListId )
+     selectedListId = null;
+     save();
+     addProject();
+   })
    function buildTask(){
     const priority = document.querySelector('input[name="priority"]:checked').value;
     let taskListItem, taskCheckBox, taskValue, taskButton, taskTrash;
@@ -38,9 +44,6 @@ function Tasker() {
     taskTrash = document.createElement('i');
     taskButton.className = 'btn-trash';
     taskTrash.setAttribute('class','fa fa-trash');
-
-    
-    
     const priorityElement = document.createElement('span');
     priorityElement.innerHTML = priority;
     taskButton.appendChild(taskTrash);
