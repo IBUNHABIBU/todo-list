@@ -1,5 +1,5 @@
 import '../css/style.css';
-import  renderTasks from './tasks';
+// import  renderTasks from './tasks';
 function Tasker() {
     const taskInput = document.getElementById('title');
     const taskDescription = document.getElementById('description');
@@ -28,7 +28,74 @@ function Tasker() {
      save();
      addProject();
    })
- 
+   function renderTasks(selectedProject){
+
+    selectedProject.tasks.forEach( task => {
+    
+      let taskListItem, taskCheckBox,  taskButton, taskTrash;
+      taskListItem = document.createElement('li');
+      taskListItem.setAttribute('class', 'task');
+      taskCheckBox = document.createElement('input');
+      taskCheckBox.setAttribute('type','checkbox');
+      const taskElement = document.createElement('span');
+      const descriptionElement = document.createElement('span');
+      const dateElement = document.createElement('span');
+      taskButton = document.createElement('button');
+      taskTrash = document.createElement('i');
+      taskButton.className = 'btn-trash';
+      taskTrash.setAttribute('class','fa fa-trash');
+      const priorityElement = document.createElement('span');
+    descriptionElement.innerHTML = task.description;
+   
+    dateElement.innerHTML = task.date;
+    priorityElement.innerHTML = task.priority;
+    taskElement.innerHTML = task.title;
+    console.log(selectedProject)
+    
+    taskListItem.appendChild(taskCheckBox);
+    taskListItem.appendChild(taskElement);
+    taskListItem.appendChild(descriptionElement);
+    taskButton.appendChild(taskTrash);
+    taskListItem.appendChild(dateElement)
+    taskListItem.appendChild(priorityElement)
+    taskListItem.appendChild(taskButton);
+    
+    taskList.appendChild(taskListItem);
+    });
+   }
+   function buildTask(){
+    let taskValue = taskInput.value;
+    const descriptionValue = taskDescription.value;
+    const dateValue = taskDate.value;
+    const priority = document.querySelector('input[name="priority"]:checked').value;
+    const task = createTask(taskValue,descriptionValue,dateValue,priority)
+    const selectedList = lists.find(list => list.id === selectedListId)
+    selectedList.tasks.push(task)
+  }
+  function createTask(title, description, date, priority){
+   
+    return { title: title, description: description, date: date, priority: priority}
+  }
+  function addTask() {
+    let taskValue = taskInput.value;
+    // errorMessage.style.display = 'none';
+    if(taskValue === ''){
+      // error();
+    } else {
+      buildTask();
+      taskInput.value = '';
+      scanTaskList();
+    }
+  }
+  function enterKey(e){
+    if(e.keyCode === 13 ){
+      addTask();
+    }
+  }
+  function bindEvent(){
+    addButton.onclick= addTask.bind();
+    taskInput.onkeypress = enterKey.bind(this);
+  }
   function  scanTaskList(){
     let taskListItem, checkBox , deleteButton;
     for( let i = 0; i< taskListChildren.length; i++){
@@ -58,6 +125,7 @@ projectList.addEventListener('click', e => {
    
   save();
   addProject();
+  
 })
   newProject.addEventListener('submit', function(e){
     e.preventDefault();
@@ -81,9 +149,14 @@ function addProject(){
   aside.style.display = 'none';
    } else {
     aside.style.display = 'block';
+    //  const selectedProject = lists.find( list => list.id === selectedListId );
+    // renderTasks(selectedProject)
+    clearPrevious(taskList);
+    
+   renderTasks(selectedProject)
    }
-  renderTasks(selectedProject)
-    save();
+  save();
+  
 }
 function renderProject(){
   lists.forEach(list =>{
@@ -103,7 +176,6 @@ function clearPrevious(projectList){
   }
 }
 addProject();
-
 function save() {
   localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists))
   localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId)
