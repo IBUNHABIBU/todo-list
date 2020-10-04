@@ -1,37 +1,33 @@
 import '../css/style.css';
-// import  renderTasks from './tasks';
 function Tasker() {
-    const taskInput = document.getElementById('title');
-    const taskDescription = document.getElementById('description');
-    const taskDate = document.getElementById('datetime');
-    const taskList = document.getElementById('tasks');
-    const projectList = document.querySelector('.project-list');
-    const deleteProjectBtn = document.querySelector('[data-delete-project]');
-    const projectTitle = document.querySelector('.project-title');
-    const aside = document.querySelector('aside');
-    const LOCAL_STORAGE_LIST_KEY = 'task.lists';
-    const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId';
-    let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
-    let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
-   
-    
-    const taskListChildren = taskList.children;
-    const addButton = document.getElementById('add-task-btn');
-    function construct(){
-      bindEvent();
-      scanTaskList();
-    }
-   deleteProjectBtn.addEventListener('click', e => {
-     e.preventDefault();
-     lists = lists.filter( list => list.id !== selectedListId )
-     selectedListId = null;
-     save();
-     addProject();
-   })
-   function renderTasks(selectedProject){
+  const taskInput = document.getElementById('title');
+  const taskDescription = document.getElementById('description');
+  const taskDate = document.getElementById('datetime');
+  const taskList = document.getElementById('tasks');
+  const projectList = document.querySelector('.project-list');
+  const deleteProjectBtn = document.querySelector('[data-delete-project]');
+  const projectTitle = document.querySelector('.project-title');
+  const aside = document.querySelector('aside');
+  const LOCAL_STORAGE_LIST_KEY = 'task.lists';
+  const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId';
+  let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
+  let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
+  const taskListChildren = taskList.children;
+  const addButton = document.getElementById('add-task-btn');
 
+  function construct(){
+    bindEvent();
+    scanTaskList();
+  }
+  deleteProjectBtn.addEventListener('click', e => {
+    e.preventDefault();
+    lists = lists.filter( list => list.id !== selectedListId )
+    selectedListId = null;
+    save();
+    addProject();
+  })
+  function renderTasks(selectedProject){
     selectedProject.tasks.forEach( task => {
-    
       let taskListItem, taskCheckBox,  taskButton, taskTrash;
       taskListItem = document.createElement('li');
       taskListItem.setAttribute('class', 'task');
@@ -45,24 +41,21 @@ function Tasker() {
       taskButton.className = 'btn-trash';
       taskTrash.setAttribute('class','fa fa-trash');
       const priorityElement = document.createElement('span');
-    descriptionElement.innerHTML = task.description;
-   
-    dateElement.innerHTML = task.date;
-    priorityElement.innerHTML = task.priority;
-    taskElement.innerHTML = task.title;
-    console.log(selectedProject)
-    
-    taskListItem.appendChild(taskCheckBox);
-    taskListItem.appendChild(taskElement);
-    taskListItem.appendChild(descriptionElement);
-    taskButton.appendChild(taskTrash);
-    taskListItem.appendChild(dateElement)
-    taskListItem.appendChild(priorityElement)
-    taskListItem.appendChild(taskButton);
-    
-    taskList.appendChild(taskListItem);
+      descriptionElement.innerHTML = task.description;
+      priorityElement.innerHTML = task.priority;
+      dateElement.innerHTML = task.date;
+      taskElement.innerHTML = task.title;
+      taskListItem.appendChild(taskCheckBox);
+      taskListItem.appendChild(taskElement);
+      taskListItem.appendChild(descriptionElement);
+      taskButton.appendChild(taskTrash);
+      taskListItem.appendChild(dateElement)
+      taskListItem.appendChild(priorityElement)
+      taskListItem.appendChild(taskButton);
+      taskList.appendChild(taskListItem);
     });
    }
+
    function buildTask(){
     let taskValue = taskInput.value;
     const descriptionValue = taskDescription.value;
@@ -72,30 +65,32 @@ function Tasker() {
     const selectedList = lists.find(list => list.id === selectedListId)
     selectedList.tasks.push(task)
   }
+
   function createTask(title, description, date, priority){
-   
-    return { title: title, description: description, date: date, priority: priority}
+    return { title: title, description: description, date: date, priority: priority };
   }
+
   function addTask() {
     let taskValue = taskInput.value;
-    // errorMessage.style.display = 'none';
     if(taskValue === ''){
-      // error();
     } else {
       buildTask();
       taskInput.value = '';
       scanTaskList();
     }
   }
+
   function enterKey(e){
     if(e.keyCode === 13 ){
       addTask();
     }
   }
+
   function bindEvent(){
     addButton.onclick= addTask.bind();
     taskInput.onkeypress = enterKey.bind(this);
   }
+
   function  scanTaskList(){
     let taskListItem, checkBox , deleteButton;
     for( let i = 0; i< taskListChildren.length; i++){
@@ -110,23 +105,22 @@ function Tasker() {
         }
       })
       deleteButton.addEventListener('click', function(e){
-         taskListItem.remove();
+        let child = e.target.parentElement.parentElement
+        taskList.removeChild(child);
+        save();
       })
     }
   }
   const newProject = document.querySelector('[data-new-project]');
-  
 
-projectList.addEventListener('click', e => {
-  // aside.style.display = 'block';
-  if (e.target.tagName.toLowerCase() === 'li') {
-     selectedListId = e.target.dataset.listId;
-  }
-   
-  save();
-  addProject();
-  
-})
+  projectList.addEventListener('click', e => {
+
+    if (e.target.tagName.toLowerCase() === 'li') {
+      selectedListId = e.target.dataset.listId;
+    }
+    save();
+    addProject();
+  })
   newProject.addEventListener('submit', function(e){
     e.preventDefault();
     const projectInput = document.querySelector('[data-new-input]');
@@ -137,27 +131,27 @@ projectList.addEventListener('click', e => {
     lists.push(list);
     addProject();
     save();
-  })
+  });
+
   function createProject(projectName){
     return { id: Date.now().toString(), name: projectName, tasks: [] }
   }
-function addProject(){
-  clearPrevious(projectList);
-   renderProject();
-   const selectedProject = lists.find( list => list.id === selectedListId );
-   if(selectedListId === null){
-  aside.style.display = 'none';
-   } else {
-    aside.style.display = 'block';
-    //  const selectedProject = lists.find( list => list.id === selectedListId );
-    // renderTasks(selectedProject)
+
+  function addProject(){
+    clearPrevious(projectList);
+     renderProject();
+     const selectedProject = lists.find( list => list.id === selectedListId );
+     if(selectedListId === null){
+       aside.style.display = 'none';
+     } else {
+      aside.style.display = 'block';
     clearPrevious(taskList);
     
-   renderTasks(selectedProject)
-   }
-  save();
+    renderTasks(selectedProject)
+    }
+    save();
+  }
   
-}
 function renderProject(){
   lists.forEach(list =>{
     const li = document.createElement('li');
