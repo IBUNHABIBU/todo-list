@@ -10,6 +10,7 @@ function Tasker() {
   const aside = document.querySelector('aside');
   const LOCAL_STORAGE_LIST_KEY = 'task.lists';
   const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId';
+  const newProject = document.querySelector('[data-new-project]');
   let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
   let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
   const taskListChildren = taskList.children;
@@ -111,16 +112,15 @@ function Tasker() {
       })
     }
   }
-  const newProject = document.querySelector('[data-new-project]');
 
   projectList.addEventListener('click', e => {
-
     if (e.target.tagName.toLowerCase() === 'li') {
       selectedListId = e.target.dataset.listId;
     }
     save();
     addProject();
-  })
+  });
+
   newProject.addEventListener('submit', function(e){
     e.preventDefault();
     const projectInput = document.querySelector('[data-new-input]');
@@ -145,35 +145,37 @@ function Tasker() {
        aside.style.display = 'none';
      } else {
       aside.style.display = 'block';
-    clearPrevious(taskList);
-    
-    renderTasks(selectedProject)
+      clearPrevious(taskList);
+      renderTasks(selectedProject)
     }
     save();
   }
   
-function renderProject(){
-  lists.forEach(list =>{
-    const li = document.createElement('li');
-    li.dataset.listId = list.id;
-    li.innerText = list.name;
-    projectList.appendChild(li);
-    if(list.id === selectedListId){
-      li.classList.add('selected');
-      projectTitle.innerText = list.name;
-    }
-  })
-}
-function clearPrevious(projectList){
-  while (projectList.firstChild) {
-    projectList.removeChild(projectList.firstChild)
-  }
-}
+ function renderProject(){
+   lists.forEach(list =>{
+     const li = document.createElement('li');
+     li.dataset.listId = list.id;
+     li.innerText = list.name;
+     projectList.appendChild(li);
+     if(list.id === selectedListId){
+       li.classList.add('selected');
+       projectTitle.innerText = list.name;
+     }
+   })
+ }
+
+ function clearPrevious(projectList){
+   while (projectList.firstChild) {
+     projectList.removeChild(projectList.firstChild);
+   }
+ }
+
 addProject();
-function save() {
-  localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists))
-  localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId)
-}
+
+ function save() {
+   localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists));
+   localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId);
+ }
   return { construct  }
 }
 const todo = Tasker();
