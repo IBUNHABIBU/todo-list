@@ -1,4 +1,4 @@
-body{
+body {
   display: flex;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -13,28 +13,23 @@ body{
 
 }
 
-.create-btn{
+.create-btn {
   padding-right: 1rem;
 }
 
 .fa-plus{ margin-right: 1rem; }
 
 
-main{
-  background-image: url(../images/bg.jpg);
+main {
+  background-image: url('bg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   width: 90%;
   height: 100vh;
 }
 
-header{ 
-  /* width: 30%; */
-}
-.heading{
-  /* padding: 2rem;  */
-}
-.new-project-input{
+
+.new-project-input {
   border-radius: 6px;
   height: 2rem;
   background: #efefef;
@@ -45,7 +40,7 @@ header{
   outline: none;
 }
 
-article{
+article {
   position: relative;
   top: 8rem;
   left: 8rem;
@@ -57,7 +52,7 @@ article{
   display: none;
 }
 
-.new-project-btns button{
+.new-project-btns button {
   width: 49%;
   height: 50%;
   position: relative;
@@ -70,11 +65,11 @@ article{
   outline: none;
 }
 
-.new-project-btns button:hover{
+.new-project-btns button:hover {
   background: #efefef;
 }
 
-.task.completed{
+.task.completed {
   text-decoration: line-through;
   color: gray;
 }
@@ -82,7 +77,7 @@ article{
   text-decoration: line-through;
   color: gray;
 }
-aside{
+aside {
   padding: 4rem; 
   background: white;
   width: 100%;
@@ -91,42 +86,50 @@ aside{
   top: 4rem;
   margin: 1rem;
 }
-.form-container{
+.form-container {
   padding: 1rem;
 }
-form input{
+
+form input {
   border: 1px solid  #efefef;
   background: rgb(240, 240, 240);
   height: 2.2rem;
   outline: none;
 }
-#datetime{
+
+#datetime {
   width: 8rem;
 }
+
 input[type='date']::before {
   content: attr(placeholder);
 }
-.task{
+
+.task {
   background: rgb(250, 250, 250);
 }
-li{
+
+li {
   border-top: 1px solid #efefef;
   padding: 1rem;
   list-style: none;
   display: flex;
   justify-content: space-around;
 }
-.btn-trash{
+
+.btn-trash {
   border: none;
   background: none;
 }
-.fa-trash{
+
+.fa-trash {
   float: right;
   position: relative;
   right: 0;
   color: #9c9c9c;
 }
-.new.list{
+
+.new.list {
   width: 70%;
   font-size: 1.1rem;
   margin-left: 1rem;
@@ -164,16 +167,16 @@ li{
 .new:focus {
   border-bottom-width: 3px;
 }
-.project-list li:hover{
+.project-list li:hover  {
   cursor: pointer;
   font-weight: bolder;
 }
-.selected{
+.selected  {
   font-weight: bolder;
   color: rgb(197, 5, 5);
   font-size: 1rem;
 }
-.project-title-container{
+.project-title-container  {
   display: flex;
   justify-content: space-between;
 }
