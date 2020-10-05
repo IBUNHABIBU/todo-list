@@ -24,19 +24,15 @@ function Tasker() {
   });
   function renderTasks(selectedProject) {
     selectedProject.tasks.forEach(task => {
-      const taskListItem;
-      const taskCheckBox;
-      const taskButton;
-      const taskTrash;
-      taskListItem = document.createElement('li');
+      const taskListItem = document.createElement('li');
       taskListItem.setAttribute('class', 'task');
-      taskCheckBox = document.createElement('input');
+      const taskCheckBox = document.createElement('input');
       taskCheckBox.setAttribute('type', 'checkbox');
       const taskElement = document.createElement('span');
       const descriptionElement = document.createElement('span');
       const dateElement = document.createElement('span');
-      taskButton = document.createElement('button');
-      taskTrash = document.createElement('i');
+      const taskButton = document.createElement('button');
+      const taskTrash = document.createElement('i');
       taskButton.className = 'btn-trash';
       taskTrash.setAttribute('class', 'fa fa-trash');
       const priorityElement = document.createElement('span');
