@@ -49,10 +49,10 @@ function Tasker() {
       taskListItem.appendChild(taskButton);
       taskList.appendChild(taskListItem);
     });
-   }
+  }
 
-   function buildTask() {
-    let taskValue = taskInput.value;
+  function buildTask() {
+    const taskValue = taskInput.value;
     const descriptionValue = taskDescription.value;
     const dateValue = taskDate.value;
     const priority = document.querySelector('input[name="priority"]:checked').value;
@@ -62,12 +62,12 @@ function Tasker() {
   }
 
   function createTask(title, description, date, priority){
-    return { title: title, description: description, date: date, priority: priority };
+    return { title, description, date, priority };
   }
 
   function addTask() {
     let taskValue = taskInput.value;
-    if(taskValue === ''){
+    if (taskValue === '') {
     } else {
       buildTask();
       taskInput.value = '';
@@ -76,29 +76,31 @@ function Tasker() {
   }
 
   function enterKey(e) {
-    if(e.keyCode === 13 ){
+    if (e.keyCode === 13) {
       addTask();
     }
   }
 
   function bindEvent() {
-    addButton.onclick= addTask.bind();
+    addButton.onclick = addTask.bind();
     taskInput.onkeypress = enterKey.bind(this);
   }
 
-  function  scanTaskList() {
+  function scanTaskList() {
     let taskListItem, checkBox , deleteButton;
-    for( let i = 0; i< taskListChildren.length; i++) {
+    for (let i = 0; i < taskListChildren.length; i++) {
       taskListItem = taskListChildren[i];
       checkBox = taskListItem.getElementsByTagName('input')[0];
       deleteButton = taskListItem.getElementsByTagName('button')[0];
-      checkBox.addEventListener('click', function(e){
-        if(e.target.checked){
+
+      checkBox.addEventListener('click', function(e) {
+        if (e.target.checked){
           e.target.parentElement.classList.add('completed');
         } else {
           e.target.parentElement.classList.remove('completed');
         }
       });
+      
       deleteButton.addEventListener('click', function(e) {
         let child = e.target.parentElement.parentElement
         taskList.removeChild(child);
@@ -119,7 +121,7 @@ function Tasker() {
     e.preventDefault();
     const projectInput = document.querySelector('[data-new-input]');
     const inputValue = projectInput.value;
-    if(inputValue === null || inputValue === '') return;
+    if (inputValue === null || inputValue === '') return;
     const list = createProject(inputValue);
     projectInput.value = null;
     lists.push(list);
@@ -135,7 +137,7 @@ function Tasker() {
     clearPrevious(projectList);
      renderProject();
      const selectedProject = lists.find( list => list.id === selectedListId );
-     if(selectedListId === null) {
+     if (selectedListId === null) {
        aside.style.display = 'none';
      } else {
       aside.style.display = 'block';
@@ -151,7 +153,7 @@ function Tasker() {
      li.dataset.listId = list.id;
      li.innerText = list.name;
      projectList.appendChild(li);
-     if(list.id === selectedListId) {
+     if (list.id === selectedListId) {
        li.classList.add('selected');
        projectTitle.innerText = list.name;
      }
