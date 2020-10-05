@@ -3,7 +3,7 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.project-create-btn{
+.project-create-btn {
   background: #008cba;
   color: #fff;
   font-size: 1rem;
@@ -16,7 +16,7 @@ body {
   padding-right: 1rem;
 }
 
-.fa-plus{ margin-right: 1rem; }
+.fa-plus { margin-right: 1rem; }
 
 main {
   background-image: url('bg.jpg');
