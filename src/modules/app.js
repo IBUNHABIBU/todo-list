@@ -15,7 +15,6 @@ function Tasker() {
   let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
   const taskListChildren = taskList.children;
   const addButton = document.getElementById('add-task-btn');
-
   function construct(){
     bindEvent();
     scanTaskList();
