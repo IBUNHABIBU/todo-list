@@ -15,17 +15,19 @@ function Tasker() {
   let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
   const taskListChildren = taskList.children;
   const addButton = document.getElementById('add-task-btn');
-  
   deleteProjectBtn.addEventListener('click', e => {
     e.preventDefault();
     lists = lists.filter( list => list.id !== selectedListId );
     selectedListId = null;
     save();
     addProject();
-  })
+  });
   function renderTasks(selectedProject) {
-    selectedProject.tasks.forEach( task => {
-      let taskListItem, taskCheckBox,  taskButton, taskTrash;
+    selectedProject.tasks.forEach(task => {
+      const taskListItem;
+      const taskCheckBox;
+      const taskButton;
+      const taskTrash;
       taskListItem = document.createElement('li');
       taskListItem.setAttribute('class', 'task');
       taskCheckBox = document.createElement('input');
@@ -100,12 +102,12 @@ function Tasker() {
         } else {
           e.target.parentElement.classList.remove('completed');
         }
-      })
+      });
       deleteButton.addEventListener('click', function(e) {
         let child = e.target.parentElement.parentElement
         taskList.removeChild(child);
         save();
-      })
+      });
     }
   }
 
@@ -157,7 +159,7 @@ function Tasker() {
        li.classList.add('selected');
        projectTitle.innerText = list.name;
      }
-   })
+   });
  }
 
  function clearPrevious(projectList) {
