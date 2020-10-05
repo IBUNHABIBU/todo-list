@@ -100,7 +100,7 @@ function Tasker() {
           e.target.parentElement.classList.remove('completed');
         }
       });
-      
+
       deleteButton.addEventListener('click', function(e) {
         let child = e.target.parentElement.parentElement
         taskList.removeChild(child);
@@ -154,8 +154,8 @@ function Tasker() {
      li.innerText = list.name;
      projectList.appendChild(li);
      if (list.id === selectedListId) {
-       li.classList.add('selected');
-       projectTitle.innerText = list.name;
+        li.classList.add('selected');
+        projectTitle.innerText = list.name;
      }
    });
  }
