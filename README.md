@@ -1,6 +1,6 @@
 # Todo-list app
  Is the web based application where user can schedule tasks which are supposed to be done.
-![screenshot](https://github.com/IBUNHABIBU/tic-tac-toe-game/blob/feature/src/Images/4e6rgj.gif)
+![screenshot](https://github.com/IBUNHABIBU/todo-list/blob/feature/src/images/todolist.gif)
 
 ## Built with
 * HTML
