@@ -10,7 +10,6 @@ body {
   border-radius: 1.6rem;
   border: none;
   padding: 0.6rem;
-
 }
 
 .create-btn {
@@ -19,7 +18,6 @@ body {
 
 .fa-plus{ margin-right: 1rem; }
 
-
 main {
   background-image: url('bg.jpg');
   background-repeat: no-repeat;
@@ -27,7 +25,6 @@ main {
   width: 90%;
   height: 100vh;
 }
-
 
 .new-project-input {
   border-radius: 6px;
@@ -73,10 +70,11 @@ article {
   text-decoration: line-through;
   color: gray;
 }
-.task.completed span{
+.task.completed span {
   text-decoration: line-through;
   color: gray;
 }
+
 aside {
   padding: 4rem; 
   background: white;
@@ -86,6 +84,7 @@ aside {
   top: 4rem;
   margin: 1rem;
 }
+
 .form-container {
   padding: 1rem;
 }
@@ -155,7 +154,6 @@ li {
   font-size: inherit;
   outline: none;
   padding: 0.25em;
-
   transition: border-bottom 150ms ease-in;
   order: 2;
 }
@@ -167,16 +165,19 @@ li {
 .new:focus {
   border-bottom-width: 3px;
 }
-.project-list li:hover  {
+
+.project-list li:hover {
   cursor: pointer;
   font-weight: bolder;
 }
-.selected  {
+
+.selected {
   font-weight: bolder;
   color: rgb(197, 5, 5);
   font-size: 1rem;
 }
-.project-title-container  {
+
+.project-title-container {
   display: flex;
   justify-content: space-between;
 }
