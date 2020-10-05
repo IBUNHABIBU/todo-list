@@ -33,7 +33,7 @@ main {
   width: 100%;
   position: relative;
   top: 2rem;
-  border: 1px solid#efefef; 
+  border: 1px solid#efefef;
   outline: none;
 }
 
@@ -70,13 +70,14 @@ article {
   text-decoration: line-through;
   color: gray;
 }
+
 .task.completed span {
   text-decoration: line-through;
   color: gray;
 }
 
 aside {
-  padding: 4rem; 
+  padding: 4rem;
   background: white;
   width: 100%;
   height: 100vh;
