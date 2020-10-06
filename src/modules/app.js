@@ -159,7 +159,7 @@ function Tasker() {
     return { id: Date.now().toString(), name: projectName, tasks: [] };
   }
 
-  newProject.addEventListener('submit', function (e) {
+  function makeNewProject(e) {
     e.preventDefault();
     const projectInput = document.querySelector('[data-new-input]');
     const inputValue = projectInput.value;
@@ -169,7 +169,8 @@ function Tasker() {
     lists.push(list);
     addProject();
     save();
-  });
+  }
+  newProject.addEventListener('submit', makeNewProject);
 
   addProject();
 
