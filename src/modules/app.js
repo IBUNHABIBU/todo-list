@@ -1,4 +1,5 @@
 import '../css/style.css';
+
 function Tasker() {
   const taskInput = document.getElementById('title');
   const taskDescription = document.getElementById('description');
@@ -19,7 +20,6 @@ function Tasker() {
     localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists));
     localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId);
   }
-
 
   function clearPrevious(projectList) {
     while (projectList.firstChild) {
