@@ -123,7 +123,7 @@ function Tasker() {
       });
 
       deleteButton.addEventListener('click', function(e) {
-        let child = e.target.parentElement.parentElement
+        let child = e.target.parentElement.parentElement;
         taskList.removeChild(child);
         save();
       });
@@ -131,10 +131,9 @@ function Tasker() {
   }
 
   function addTask() {
-    const taskValue = taskInput.value;
-      buildTask();
-      taskInput.value = '';
-      scanTaskList();
+    buildTask();
+    taskInput.value = '';
+    scanTaskList();
   }
 
   function enterKey(e) {
@@ -156,6 +155,10 @@ function Tasker() {
     addProject();
   });
 
+  function createProject(projectName) {
+    return { id: Date.now().toString(), name: projectName, tasks: [] }
+  }
+
   newProject.addEventListener('submit', function(e) {
     e.preventDefault();
     const projectInput = document.querySelector('[data-new-input]');
@@ -168,13 +171,7 @@ function Tasker() {
     save();
   });
 
-  function createProject(projectName) {
-    return { id: Date.now().toString(), name: projectName, tasks: [] }
-  }
-
-
-
-addProject();
+  addProject();
 
   function construct() {
     bindEvent();
