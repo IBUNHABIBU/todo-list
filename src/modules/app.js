@@ -56,7 +56,6 @@ function Tasker() {
     });
   }
 
-  
   function renderProject() {
     lists.forEach(list => {
       const li = document.createElement('li');
@@ -92,10 +91,9 @@ function Tasker() {
     addProject();
   });
  
-
   function createTask(title, description, date, priority) {
     return {
-      title, description, date, priority
+      title, description, date, priority,
     };
   }
 
@@ -109,11 +107,10 @@ function Tasker() {
     selectedList.tasks.push(task);
   }
 
-
   function addTask() {
     const taskValue = taskInput.value;
     if (taskValue === '') {
-      return 
+      return;
     } else {
       buildTask();
       taskInput.value = '';
