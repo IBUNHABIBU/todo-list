@@ -20,15 +20,30 @@ function Tasker() {
     localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId);
   }
 
-  
+
   function clearPrevious(projectList) {
     while (projectList.firstChild) {
       projectList.removeChild(projectList.firstChild);
     }
   }
+  
+  function addProject() {
+    clearPrevious(projectList);
+     renderProject();
+     const selectedProject = lists.find( list => list.id === selectedListId );
+     if (selectedListId === null) {
+       aside.style.display = 'none';
+     } else {
+      aside.style.display = 'block';
+      clearPrevious(taskList);
+      renderTasks(selectedProject);
+    }
+    save();
+  }
+
   deleteProjectBtn.addEventListener('click', e => {
     e.preventDefault();
-    lists = lists.filter( list => list.id !== selectedListId );
+    lists = lists.filter(list => list.id !== selectedListId);
     selectedListId = null;
     save();
     addProject();
@@ -62,6 +77,10 @@ function Tasker() {
     });
   }
 
+  function createTask(title, description, date, priority){
+    return { title, description, date, priority };
+  }
+
   function buildTask() {
     const taskValue = taskInput.value;
     const descriptionValue = taskDescription.value;
@@ -72,13 +91,11 @@ function Tasker() {
     selectedList.tasks.push(task);
   }
 
-  function createTask(title, description, date, priority){
-    return { title, description, date, priority };
-  }
 
   function addTask() {
-    let taskValue = taskInput.value;
+    const taskValue = taskInput.value;
     if (taskValue === '') {
+      return 
     } else {
       buildTask();
       taskInput.value = '';
@@ -144,19 +161,6 @@ function Tasker() {
     return { id: Date.now().toString(), name: projectName, tasks: [] }
   }
 
-  function addProject() {
-    clearPrevious(projectList);
-     renderProject();
-     const selectedProject = lists.find( list => list.id === selectedListId );
-     if (selectedListId === null) {
-       aside.style.display = 'none';
-     } else {
-      aside.style.display = 'block';
-      clearPrevious(taskList);
-      renderTasks(selectedProject);
-    }
-    save();
-  }
 
   function renderProject() {
     lists.forEach(list => {
