@@ -107,24 +107,26 @@ function Tasker() {
     selectedList.tasks.push(task);
   }
 
+  function markCompleted(e) {
+    if (e.target.checked) {
+      e.target.parentElement.classList.add('completed');
+    } else {
+      e.target.parentElement.classList.remove('completed');
+    }
+  }
+
+  function deleteTasks(e) {
+    const child = e.target.parentElement.parentElement;
+    taskList.removeChild(child);
+    save();
+  }
   function scanTaskList() {
-    for (let i = 0; i < taskListChildren.length; i++) {
+    for (let i = 0; i < taskListChildren.length; i += 1) {
       const taskListItem = taskListChildren[i];
       const checkBox = taskListItem.getElementsByTagName('input')[0];
       const deleteButton = taskListItem.getElementsByTagName('button')[0];
-      checkBox.addEventListener('click', function(e) {
-        if (e.target.checked) {
-          e.target.parentElement.classList.add('completed');
-        } else {
-          e.target.parentElement.classList.remove('completed');
-        }
-      });
-
-      deleteButton.addEventListener('click', function (e) {
-        const child = e.target.parentElement.parentElement;
-        taskList.removeChild(child);
-        save();
-      });
+      checkBox.addEventListener('click', markCompleted);
+      deleteButton.addEventListener('click', deleteTasks);
     }
   }
 
