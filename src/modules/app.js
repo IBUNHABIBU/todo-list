@@ -94,7 +94,7 @@ function Tasker() {
       deleteButton = taskListItem.getElementsByTagName('button')[0];
 
       checkBox.addEventListener('click', function(e) {
-        if (e.target.checked){
+        if (e.target.checked) {
           e.target.parentElement.classList.add('completed');
         } else {
           e.target.parentElement.classList.remove('completed');
