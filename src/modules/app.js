@@ -90,7 +90,7 @@ function Tasker() {
     save();
     addProject();
   });
- 
+
   function createTask(title, description, date, priority) {
     return {
       title, description, date, priority,
@@ -107,35 +107,13 @@ function Tasker() {
     selectedList.tasks.push(task);
   }
 
-  function addTask() {
-    const taskValue = taskInput.value;
-    if (taskValue === '') {
-      return;
-    } else {
-      buildTask();
-      taskInput.value = '';
-      scanTaskList();
-    }
-  }
-
-  function enterKey(e) {
-    if (e.keyCode === 13) {
-      addTask();
-    }
-  }
-
-  function bindEvent() {
-    addButton.onclick = addTask.bind();
-    taskInput.onkeypress = enterKey.bind(this);
-  }
-
+  
   function scanTaskList() {
     let taskListItem, checkBox , deleteButton;
     for (let i = 0; i < taskListChildren.length; i++) {
       taskListItem = taskListChildren[i];
       checkBox = taskListItem.getElementsByTagName('input')[0];
       deleteButton = taskListItem.getElementsByTagName('button')[0];
-
       checkBox.addEventListener('click', function(e) {
         if (e.target.checked) {
           e.target.parentElement.classList.add('completed');
@@ -150,6 +128,24 @@ function Tasker() {
         save();
       });
     }
+  }
+
+  function addTask() {
+    const taskValue = taskInput.value;
+      buildTask();
+      taskInput.value = '';
+      scanTaskList();
+  }
+
+  function enterKey(e) {
+    if (e.keyCode === 13) {
+      addTask();
+    }
+  }
+
+  function bindEvent() {
+    addButton.onclick = addTask.bind();
+    taskInput.onkeypress = enterKey.bind(this);
   }
 
   projectList.addEventListener('click', e => {
