@@ -26,28 +26,7 @@ function Tasker() {
       projectList.removeChild(projectList.firstChild);
     }
   }
-  
-  function addProject() {
-    clearPrevious(projectList);
-     renderProject();
-     const selectedProject = lists.find( list => list.id === selectedListId );
-     if (selectedListId === null) {
-       aside.style.display = 'none';
-     } else {
-      aside.style.display = 'block';
-      clearPrevious(taskList);
-      renderTasks(selectedProject);
-    }
-    save();
-  }
 
-  deleteProjectBtn.addEventListener('click', e => {
-    e.preventDefault();
-    lists = lists.filter(list => list.id !== selectedListId);
-    selectedListId = null;
-    save();
-    addProject();
-  });
   function renderTasks(selectedProject) {
     selectedProject.tasks.forEach(task => {
       const taskListItem = document.createElement('li');
@@ -77,8 +56,47 @@ function Tasker() {
     });
   }
 
-  function createTask(title, description, date, priority){
-    return { title, description, date, priority };
+  
+  function renderProject() {
+    lists.forEach(list => {
+      const li = document.createElement('li');
+      li.dataset.listId = list.id;
+      li.innerText = list.name;
+      projectList.appendChild(li);
+      if (list.id === selectedListId) {
+        li.classList.add('selected');
+        projectTitle.innerText = list.name;
+      }
+    });
+  }
+
+  function addProject() {
+    clearPrevious(projectList);
+    renderProject();
+    const selectedProject = lists.find(list => list.id === selectedListId);
+    if (selectedListId === null) {
+      aside.style.display = 'none';
+    } else {
+      aside.style.display = 'block';
+      clearPrevious(taskList);
+      renderTasks(selectedProject);
+    }
+    save();
+  }
+
+  deleteProjectBtn.addEventListener('click', e => {
+    e.preventDefault();
+    lists = lists.filter(list => list.id !== selectedListId);
+    selectedListId = null;
+    save();
+    addProject();
+  });
+ 
+
+  function createTask(title, description, date, priority) {
+    return {
+      title, description, date, priority
+    };
   }
 
   function buildTask() {
@@ -161,19 +179,6 @@ function Tasker() {
     return { id: Date.now().toString(), name: projectName, tasks: [] }
   }
 
-
-  function renderProject() {
-    lists.forEach(list => {
-      const li = document.createElement('li');
-      li.dataset.listId = list.id;
-      li.innerText = list.name;
-      projectList.appendChild(li);
-      if (list.id === selectedListId) {
-        li.classList.add('selected');
-        projectTitle.innerText = list.name;
-      }
-    });
-  }
 
 
 addProject();
