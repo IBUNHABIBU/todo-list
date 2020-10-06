@@ -107,14 +107,12 @@ function Tasker() {
     selectedList.tasks.push(task);
   }
 
-  
   function scanTaskList() {
-    let taskListItem, checkBox , deleteButton;
     for (let i = 0; i < taskListChildren.length; i++) {
-      taskListItem = taskListChildren[i];
-      checkBox = taskListItem.getElementsByTagName('input')[0];
-      deleteButton = taskListItem.getElementsByTagName('button')[0];
-      checkBox.addEventListener('click', function(e) {
+      let taskListItem = taskListChildren[i];
+      let checkBox = taskListItem.getElementsByTagName('input')[0];
+      let deleteButton = taskListItem.getElementsByTagName('button')[0];
+      checkBox.addEventListener ('click', function (e) {
         if (e.target.checked) {
           e.target.parentElement.classList.add('completed');
         } else {
@@ -123,7 +121,7 @@ function Tasker() {
       });
 
       deleteButton.addEventListener('click', function(e) {
-        let child = e.target.parentElement.parentElement;
+        const child = e.target.parentElement.parentElement;
         taskList.removeChild(child);
         save();
       });
