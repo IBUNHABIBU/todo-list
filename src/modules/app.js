@@ -15,6 +15,17 @@ function Tasker() {
   let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
   const taskListChildren = taskList.children;
   const addButton = document.getElementById('add-task-btn');
+  function save() {
+    localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists));
+    localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId);
+  }
+
+  
+  function clearPrevious(projectList) {
+    while (projectList.firstChild) {
+      projectList.removeChild(projectList.firstChild);
+    }
+  }
   deleteProjectBtn.addEventListener('click', e => {
     e.preventDefault();
     lists = lists.filter( list => list.id !== selectedListId );
@@ -146,38 +157,28 @@ function Tasker() {
     }
     save();
   }
-  
- function renderProject() {
-   lists.forEach(list => {
-     const li = document.createElement('li');
-     li.dataset.listId = list.id;
-     li.innerText = list.name;
-     projectList.appendChild(li);
-     if (list.id === selectedListId) {
+
+  function renderProject() {
+    lists.forEach(list => {
+      const li = document.createElement('li');
+      li.dataset.listId = list.id;
+      li.innerText = list.name;
+      projectList.appendChild(li);
+      if (list.id === selectedListId) {
         li.classList.add('selected');
         projectTitle.innerText = list.name;
-     }
-   });
- }
+      }
+    });
+  }
 
- function clearPrevious(projectList) {
-   while (projectList.firstChild) {
-     projectList.removeChild(projectList.firstChild);
-   }
- }
 
 addProject();
 
- function save() {
-   localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists));
-   localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId);
- }
-
- function construct() {
-  bindEvent();
-  scanTaskList();
-}
-  return { construct  }
+  function construct() {
+    bindEvent();
+    scanTaskList();
+  }
+  return { construct };
 }
 const todo = Tasker();
 todo.construct();
