@@ -9,16 +9,16 @@ function Tasker() {
   const deleteProjectBtn = document.querySelector('[data-delete-project]');
   const projectTitle = document.querySelector('.project-title');
   const aside = document.querySelector('aside');
-  const LOCAL_STORAGE_LIST_KEY = 'task.lists';
-  const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId';
+  const LIST_KEY = 'task.lists';
+  const SELECTED_ID_KEY = 'task.selectedListId';
   const newProject = document.querySelector('[data-new-project]');
-  let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
-  let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
+  let lists = JSON.parse(localStorage.getItem(LIST_KEY)) || [];
+  let selectedListId = localStorage.getItem(SELECTED_ID_KEY);
   const taskListChildren = taskList.children;
   const addButton = document.getElementById('add-task-btn');
   function save() {
-    localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists));
-    localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId);
+    localStorage.setItem(LIST_KEY, JSON.stringify(lists));
+    localStorage.setItem(SELECTED_ID_KEY, selectedListId);
   }
 
   function clearPrevious(projectList) {
