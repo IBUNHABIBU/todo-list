@@ -19,7 +19,7 @@ body {
 .fa-plus { margin-right: 1rem; }
 
 main {
-  background-image: url('bg.jpg');
+  background-image: url('../images/bg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   width: 90%;
