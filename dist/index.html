@@ -5,38 +5,70 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
-<body>
+<body >
   <header>
-    <nav>
-     <h1>Any do clone</h1>
-     <button type="submit" class="project-create-btn"><i class="fa fa-plus"></i>Create Project</button>
-     <form action="">
-       <h2>Project</h2>
-       <input type="text" class="new-projec-input">
-       <button type="submit">Submit</button>
-     </form>
-     <ul>
-       <li>Domestic work</li>
-       <li>Workout</li>
-       <li>Learning</li>
-       <li>Job</li>
-       <li></li>
+    <!-- <nav> -->
+      <div class="heading">
+        <h1 class="display-8 text-center text-primary">2Do App</h1>
+        
+          <h3 class="display-8 text-center text-info">Projects</h2>
+      </div>
+    
+       
+     <ul class="project-list">
+      
      </ul>
-    </nav>
+     <form action="" data-new-project >
+      <input 
+        type="text"
+        class="new list"
+        placeholder="add new project"
+        aria-label="new list name"
+        data-new-input
+      />
+      <button class="btn create" aria-label="create new list">+</button>
+    </form>
+    <!-- </nav> -->
   </header>
   <main>
       <section>
-          <article>
-    
-          </article>
         <aside>
+          <div class="project-title-container">
+            <h3 class="project-title"></h3>
+            <button class="btn btn-warning" data-delete-project>Delete Project</button>
+          </div>
+          
+          <hr>
+          <div class="form-container">
+            <form action="">
+              <input type="text" name="" id="title" placeholder="Title">
+              <input type="text" class="descripiton" id="description" placeholder="Description">
+              
+              <input  type="date" placeholder="Schedule  "  name="Date" id="datetime" >
+              <label for="priority">Priority
+            <input type="radio"  name="priority" value="high priority"><label for="high">high</label>
+            <input type="radio"  name="priority" value="low priority" checked ><label for="low">low</label></label><br>
+            <button type="button" class="btn btn-primary" id="add-task-btn">Add Task</button>
+            </form>
+          </div>
+         <div class="list-container">
+          <div class="tasker-body">
+            <ul id="tasks">
+              
+            </ul>
+          </div>
+         </div>
+         
         </aside>
     </section>
   </main>
-  <footer>
-  </footer>
+  <script>
+
+  </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <script src="js/main.js"></script></body>
-</body>
 </html>
