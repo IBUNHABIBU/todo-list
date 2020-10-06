@@ -109,10 +109,10 @@ function Tasker() {
 
   function scanTaskList() {
     for (let i = 0; i < taskListChildren.length; i++) {
-      let taskListItem = taskListChildren[i];
-      let checkBox = taskListItem.getElementsByTagName('input')[0];
-      let deleteButton = taskListItem.getElementsByTagName('button')[0];
-      checkBox.addEventListener ('click', function (e) {
+      const taskListItem = taskListChildren[i];
+      const checkBox = taskListItem.getElementsByTagName('input')[0];
+      const deleteButton = taskListItem.getElementsByTagName('button')[0];
+      checkBox.addEventListener('click', function(e) {
         if (e.target.checked) {
           e.target.parentElement.classList.add('completed');
         } else {
@@ -120,7 +120,7 @@ function Tasker() {
         }
       });
 
-      deleteButton.addEventListener('click', function(e) {
+      deleteButton.addEventListener('click', function (e) {
         const child = e.target.parentElement.parentElement;
         taskList.removeChild(child);
         save();
@@ -154,10 +154,10 @@ function Tasker() {
   });
 
   function createProject(projectName) {
-    return { id: Date.now().toString(), name: projectName, tasks: [] }
+    return { id: Date.now().toString(), name: projectName, tasks: [] };
   }
 
-  newProject.addEventListener('submit', function(e) {
+  newProject.addEventListener('submit', function (e) {
     e.preventDefault();
     const projectInput = document.querySelector('[data-new-input]');
     const inputValue = projectInput.value;
