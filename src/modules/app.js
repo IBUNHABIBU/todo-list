@@ -72,6 +72,7 @@ function Tasker() {
   function addProject() {
     clearPrevious(projectList);
     renderProject();
+    
     const selectedProject = lists.find(list => list.id === selectedListId);
     if (selectedListId === null) {
       aside.style.display = 'none';
@@ -81,6 +82,7 @@ function Tasker() {
       renderTasks(selectedProject);
     }
     save();
+    scanTaskList();
   }
  
   deleteProjectBtn.addEventListener('click', e => {
@@ -171,7 +173,6 @@ function Tasker() {
 
   function construct() {
     bindEvent();
-    scanTaskList();
   }
   return { construct };
 }
