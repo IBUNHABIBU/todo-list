@@ -98,12 +98,12 @@ form input {
 }
 
 #datetime {
-  width: 8rem;
+  width: 9.6rem;
 }
 
-input[type='date']::before {
+/* input[type='date']::before {
   content: attr(placeholder);
-}
+} */
 
 .task {
   background: rgb(250, 250, 250);

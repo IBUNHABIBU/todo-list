@@ -143,7 +143,7 @@ function Tasker() {
   }
 
   function bindEvent() {
-    addButton.onclick = addTask.bind();
+    addButton.onclick = addTask().bind();
     taskInput.onkeypress = enterKey.bind(this);
   }
 
