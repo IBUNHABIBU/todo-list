@@ -7,6 +7,7 @@ function LocalSaver(){
     localStorage.setItem(LIST_KEY, JSON.stringify(lists));
     localStorage.setItem(SELECTED_ID_KEY, selectedListId);
   }
+  
   return { save, lists , selectedListId };
 }
 export default LocalSaver ;
