@@ -118,7 +118,7 @@ function Tasker() {
   function deleteTasks(e) {
     const child = e.target.parentElement.parentElement;
     taskList.removeChild(child);
-    save();
+     save();
   }
   function scanTaskList() {
     for (let i = 0; i < taskListChildren.length; i += 1) {
@@ -143,8 +143,8 @@ function Tasker() {
   }
 
   function bindEvent() {
-    addButton.onclick = addTask().bind();
-    taskInput.onkeypress = enterKey.bind(this);
+    addButton.onclick = addTask.bind();
+    taskInput.onkeypress = enterKey.bind();
   }
 
   projectList.addEventListener('click', e => {
