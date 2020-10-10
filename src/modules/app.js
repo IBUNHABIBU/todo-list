@@ -12,10 +12,10 @@ function Tasker() {
   const LIST_KEY = 'task.lists';
   const SELECTED_ID_KEY = 'task.selectedListId';
   const newProject = document.querySelector('[data-new-project]');
+  const newTask = document.querySelector('[data-task-form]');
   let lists = JSON.parse(localStorage.getItem(LIST_KEY)) || [];
   let selectedListId = localStorage.getItem(SELECTED_ID_KEY);
   const taskListChildren = taskList.children;
-  const addButton = document.getElementById('add-task-btn');
   function save() {
     localStorage.setItem(LIST_KEY, JSON.stringify(lists));
     localStorage.setItem(SELECTED_ID_KEY, selectedListId);
@@ -82,7 +82,7 @@ function Tasker() {
     }
     save();
   }
-
+ 
   deleteProjectBtn.addEventListener('click', e => {
     e.preventDefault();
     lists = lists.filter(list => list.id !== selectedListId);
@@ -97,14 +97,21 @@ function Tasker() {
     };
   }
 
-  function buildTask() {
+  function buildTask(e) {
+    e.preventDefault();
     const taskValue = taskInput.value;
     const descriptionValue = taskDescription.value;
     const dateValue = taskDate.value;
-    const priority = document.querySelector('input[name="priority"]:checked').value;
-    const task = createTask(taskValue, descriptionValue, dateValue, priority);
+    const priority = document.querySelector('input[name="priority"]:checked');
+    const priorityValue = priority.value;
+    const task = createTask(taskValue, descriptionValue, dateValue, priorityValue);
+    taskInput.value = null;
+    taskDescription.value = null;
+    taskDate.value = null;
     const selectedList = lists.find(list => list.id === selectedListId);
     selectedList.tasks.push(task);
+    save();
+    addProject();
   }
 
   function markCompleted(e) {
@@ -130,21 +137,9 @@ function Tasker() {
     }
   }
 
-  function addTask() {
-    buildTask();
-    taskInput.value = '';
-    scanTaskList();
-  }
-
-  function enterKey(e) {
-    if (e.keyCode === 13) {
-      addTask();
-    }
-  }
-
+ 
   function bindEvent() {
-    addButton.onclick = addTask.bind();
-    taskInput.onkeypress = enterKey.bind();
+    newTask.addEventListener('submit',buildTask);
   }
 
   projectList.addEventListener('click', e => {
