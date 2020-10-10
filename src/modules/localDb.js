@@ -1,5 +1,4 @@
 function LocalSaver(){
-  
   const LIST_KEY = 'task.lists';
   const SELECTED_ID_KEY = 'task.selectedListId';
   let lists = JSON.parse(localStorage.getItem(LIST_KEY)) || [];
