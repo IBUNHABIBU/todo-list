@@ -18,7 +18,10 @@ function Project() {
   const newTask = document.querySelector('[data-task-form]');
   const createTask = (title, description, date, priority) => {
     return {
-      title, description, date, priority,
+      title: title, 
+      description: description, 
+      date: date, 
+      priority: priority,
     };
   };
 
