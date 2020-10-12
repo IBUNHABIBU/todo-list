@@ -15,6 +15,7 @@ function Project() {
   const taskDescription = document.getElementById('description');
   const taskDate = document.getElementById('datetime');
   const newTask = document.querySelector('[data-task-form]');
+  const taskList = document.getElementById('tasks');
   const createTask = (title, description, date, priority) => {
     return { title, description, date, priority, };
   };
@@ -59,6 +60,20 @@ function Project() {
         projectTitle.innerText = list.name;
       }
     });
+  };
+
+  const markCompleted = (e) => {
+    if (e.target.checked) {
+      e.target.parentElement.classList.add('completed');
+    } else {
+      e.target.parentElement.classList.remove('completed');
+    }
+  };
+
+  const deleteTasks = (e) => {
+    const child = e.target.parentElement.parentElement;
+    taskList.removeChild(child);
+    localstore.save();
   };
 
   const scanTaskList = () => {
@@ -115,20 +130,6 @@ function Project() {
 
   const createProject = (projectName) => {
     return { id: Date.now().toString(), name: projectName, tasks: [] };
-  };
-
-  const markCompleted = (e) => {
-    if (e.target.checked) {
-      e.target.parentElement.classList.add('completed');
-    } else {
-      e.target.parentElement.classList.remove('completed');
-    }
-  };
-
-  const deleteTasks = (e) => {
-    const child = e.target.parentElement.parentElement;
-    taskList.removeChild(child);
-    localstore.save();
   };
 
   const makeNewProject = (e) => {
