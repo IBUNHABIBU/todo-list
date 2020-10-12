@@ -22,6 +22,48 @@ function Project() {
     };
   };
 
+  const renderTasks = (selectedProject) => {
+    selectedProject.tasks.forEach(task => {
+      const taskListItem = document.createElement('li');
+      taskListItem.setAttribute('class', 'task');
+      const taskCheckBox = document.createElement('input');
+      taskCheckBox.setAttribute('type', 'checkbox');
+      const taskElement = document.createElement('span');
+      const descriptionElement = document.createElement('span');
+      const dateElement = document.createElement('span');
+      const taskButton = document.createElement('button');
+      const taskTrash = document.createElement('i');
+      taskButton.className = 'btn-trash';
+      taskTrash.setAttribute('class', 'fa fa-trash');
+      const priorityElement = document.createElement('span');
+      descriptionElement.innerHTML = task.description;
+      priorityElement.innerHTML = task.priority;
+      dateElement.innerHTML = task.date;
+      taskElement.innerHTML = task.title;
+      taskListItem.appendChild(taskCheckBox);
+      taskListItem.appendChild(taskElement);
+      taskListItem.appendChild(descriptionElement);
+      taskButton.appendChild(taskTrash);
+      taskListItem.appendChild(dateElement);
+      taskListItem.appendChild(priorityElement);
+      taskListItem.appendChild(taskButton);
+      taskList.appendChild(taskListItem);
+    });
+  };
+
+  const renderProject = () => {
+    localstore.lists.forEach(list => {
+      const li = document.createElement('li');
+      li.dataset.listId = list.id;
+      li.innerText = list.name;
+      projectList.appendChild(li);
+      if (list.id === localstore.selectedListId) {
+        li.classList.add('selected');
+        projectTitle.innerText = list.name;
+      }
+    });
+  };
+
   const addProject = () => {
     reset.clearPrevious(projectList);
     renderProject();
@@ -54,35 +96,6 @@ function Project() {
     addProject();
   };
 
-  const renderTasks = (selectedProject) => {
-    selectedProject.tasks.forEach(task => {
-      const taskListItem = document.createElement('li');
-      taskListItem.setAttribute('class', 'task');
-      const taskCheckBox = document.createElement('input');
-      taskCheckBox.setAttribute('type', 'checkbox');
-      const taskElement = document.createElement('span');
-      const descriptionElement = document.createElement('span');
-      const dateElement = document.createElement('span');
-      const taskButton = document.createElement('button');
-      const taskTrash = document.createElement('i');
-      taskButton.className = 'btn-trash';
-      taskTrash.setAttribute('class', 'fa fa-trash');
-      const priorityElement = document.createElement('span');
-      descriptionElement.innerHTML = task.description;
-      priorityElement.innerHTML = task.priority;
-      dateElement.innerHTML = task.date;
-      taskElement.innerHTML = task.title;
-      taskListItem.appendChild(taskCheckBox);
-      taskListItem.appendChild(taskElement);
-      taskListItem.appendChild(descriptionElement);
-      taskButton.appendChild(taskTrash);
-      taskListItem.appendChild(dateElement);
-      taskListItem.appendChild(priorityElement);
-      taskListItem.appendChild(taskButton);
-      taskList.appendChild(taskListItem);
-    });
-  };
-
   const chooseProject = (e) => {
     if (e.target.tagName.toLowerCase() === 'li') {
       localstore.selectedListId = e.target.dataset.listId;
@@ -95,19 +108,6 @@ function Project() {
 
   const createProject = (projectName) => {
     return { id: Date.now().toString(), name: projectName, tasks: [] };
-  };
-
-  const renderProject = () => {
-    localstore.lists.forEach(list => {
-      const li = document.createElement('li');
-      li.dataset.listId = list.id;
-      li.innerText = list.name;
-      projectList.appendChild(li);
-      if (list.id === localstore.selectedListId) {
-        li.classList.add('selected');
-        projectTitle.innerText = list.name;
-      }
-    });
   };
 
   const markCompleted = (e) => {
