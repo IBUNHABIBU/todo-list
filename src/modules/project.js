@@ -64,6 +64,20 @@ function Project() {
     });
   };
 
+  const markCompleted = (e) => {
+    if (e.target.checked) {
+      e.target.parentElement.classList.add('completed');
+    } else {
+      e.target.parentElement.classList.remove('completed');
+    }
+  };
+
+  const deleteTasks = (e) => {
+    const child = e.target.parentElement.parentElement;
+    taskList.removeChild(child);
+    localstore.save();
+  };
+
   const scanTaskList = () => {
     for (let i = 0; i < taskListChildren.length; i += 1) {
       const taskListItem = taskListChildren[i];
@@ -118,20 +132,6 @@ function Project() {
 
   const createProject = (projectName) => {
     return { id: Date.now().toString(), name: projectName, tasks: [] };
-  };
-
-  const markCompleted = (e) => {
-    if (e.target.checked) {
-      e.target.parentElement.classList.add('completed');
-    } else {
-      e.target.parentElement.classList.remove('completed');
-    }
-  };
-
-  const deleteTasks = (e) => {
-    const child = e.target.parentElement.parentElement;
-    taskList.removeChild(child);
-    localstore.save();
   };
 
   const makeNewProject = (e) => {
