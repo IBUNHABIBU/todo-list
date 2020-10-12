@@ -119,6 +119,21 @@ function Project() {
     }
   };
 
+  const addProject = () => {
+    reset.clearPrevious(projectList);
+    renderProject();
+    const selectedProject = localstore.lists.find(list => list.id === localstore.selectedListId);
+    if (localstore.selectedListId === null) {
+      aside.style.display = 'none';
+    } else {
+      aside.style.display = 'block';
+      reset.clearPrevious(taskList);
+      renderTasks(selectedProject);
+    }
+    localstore.save();
+    scanTaskList();
+  };
+
   const makeNewProject = (e) => {
     e.preventDefault();
     const projectInput = document.querySelector('[data-new-input]');
