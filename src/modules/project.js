@@ -16,8 +16,8 @@ function Project() {
   const taskDate = document.getElementById('datetime');
   const newTask = document.querySelector('[data-task-form]');
   const taskListChildren = taskList.children;
-  const createTask = (title, description, date, priority) => ({ 
-    title, description, date, priority 
+  const createTask = (title, description, date, priority) => ({
+    title, description, date, priority
   });
 
   const renderTasks = (selectedProject) => {
@@ -128,9 +128,9 @@ function Project() {
 
   projectList.addEventListener('click', chooseProject);
 
-  const createProject = (projectName) => {
-    return { id: Date.now().toString(), name: projectName, tasks: [] };
-  };
+  const createProject = (projectName) => (
+     { id: Date.now().toString(), name: projectName, tasks: [] }
+  );
 
   const makeNewProject = (e) => {
     e.preventDefault();
