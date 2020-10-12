@@ -10,7 +10,6 @@ function Project() {
   const projectTitle = document.querySelector('.project-title');
   const aside = document.querySelector('aside');
   const taskList = document.getElementById('tasks');
-  const taskListChildren = taskList.children;
   const deleteProjectBtn = document.querySelector('[data-delete-project]');
   const taskInput = document.getElementById('title');
   const taskDescription = document.getElementById('description');
@@ -60,6 +59,16 @@ function Project() {
         projectTitle.innerText = list.name;
       }
     });
+  };
+
+  const scanTaskList = () => {
+    for (let i = 0; i < taskListChildren.length; i += 1) {
+      const taskListItem = taskListChildren[i];
+      const checkBox = taskListItem.getElementsByTagName('input')[0];
+      const deleteButton = taskListItem.getElementsByTagName('button')[0];
+      checkBox.addEventListener('click', markCompleted);
+      deleteButton.addEventListener('click', deleteTasks);
+    }
   };
 
   const addProject = () => {
