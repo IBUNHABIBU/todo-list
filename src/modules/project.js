@@ -9,8 +9,9 @@ function Project(){
   const projectTitle = document.querySelector('.project-title');
   const aside = document.querySelector('aside');
   const taskList = document.getElementById('tasks');
+  const deleteProjectBtn = document.querySelector('[data-delete-project]');
   const taskListChildren = taskList.children;
-
+  
   function renderTasks(selectedProject) {
     selectedProject.tasks.forEach(task => {
       const taskListItem = document.createElement('li');
@@ -113,7 +114,18 @@ function Project(){
     addProject();
     localstore.save();
   }
+
   newProject.addEventListener('submit', makeNewProject);
+
+  function deleteProject(){
+    localstore.lists = localstore.lists.filter(list => list.id !== localstore.selectedListId);
+    localstore.selectedListId = null;
+    localstore.save();
+    addProject();
+  }
+
+  deleteProjectBtn.addEventListener('click', deleteProject);
+  
   return { addProject };
 }
 export default Project;
