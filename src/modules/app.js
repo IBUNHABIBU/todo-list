@@ -1,6 +1,11 @@
 import '../css/style.css';
-import LocalSaver from './localDb'
+
+import LocalSaver from './localDb';
+
+import Clear from './clear'
+
 function Tasker() {
+
   const taskInput = document.getElementById('title');
   const taskDescription = document.getElementById('description');
   const taskDate = document.getElementById('datetime');
@@ -14,12 +19,8 @@ function Tasker() {
   
   const taskListChildren = taskList.children;
   const localstore = LocalSaver();
-  function clearPrevious(projectList) {
-    while (projectList.firstChild) {
-      projectList.removeChild(projectList.firstChild);
-    }
-  }
-
+  const reset = Clear();
+  
   function renderTasks(selectedProject) {
     selectedProject.tasks.forEach(task => {
       const taskListItem = document.createElement('li');
@@ -63,15 +64,14 @@ function Tasker() {
   }
 
   function addProject() {
-    clearPrevious(projectList);
+    reset.clearPrevious(projectList);
     renderProject();
-    
     const selectedProject = localstore.lists.find(list => list.id === localstore.selectedListId);
     if (localstore.selectedListId === null) {
       aside.style.display = 'none';
     } else {
       aside.style.display = 'block';
-      clearPrevious(taskList);
+      reset.clearPrevious(taskList);
       renderTasks(selectedProject);
     }
     localstore.save();
