@@ -1,6 +1,8 @@
 import Clear from './clear';
 
 import LocalSaver from './localDb';
+
+
 function Project(){
   const reset = Clear();
   const localstore = LocalSaver();
@@ -9,9 +11,8 @@ function Project(){
   const projectTitle = document.querySelector('.project-title');
   const aside = document.querySelector('aside');
   const taskList = document.getElementById('tasks');
-  const deleteProjectBtn = document.querySelector('[data-delete-project]');
   const taskListChildren = taskList.children;
-  
+  const deleteProjectBtn = document.querySelector('[data-delete-project]');
   function renderTasks(selectedProject) {
     selectedProject.tasks.forEach(task => {
       const taskListItem = document.createElement('li');
@@ -114,18 +115,38 @@ function Project(){
     addProject();
     localstore.save();
   }
-
   newProject.addEventListener('submit', makeNewProject);
+  
+  function deleteTasks(e) {
+    const child = e.target.parentElement.parentElement;
+    taskList.removeChild(child);
+    localstore.save();
+  }
+  function scanTaskList() {
+    for (let i = 0; i < taskListChildren.length; i += 1) {
+      const taskListItem = taskListChildren[i];
+      const checkBox = taskListItem.getElementsByTagName('input')[0];
+      const deleteButton = taskListItem.getElementsByTagName('button')[0];
+      checkBox.addEventListener('click', markCompleted);
+      deleteButton.addEventListener('click', deleteTasks);
+    }
+  }
 
-  function deleteProject(){
+  function markCompleted(e) {
+    if (e.target.checked) {
+      e.target.parentElement.classList.add('completed');
+    } else {
+      e.target.parentElement.classList.remove('completed');
+    }
+  }
+
+  deleteProjectBtn.addEventListener('click', e => {
+    e.preventDefault();
     localstore.lists = localstore.lists.filter(list => list.id !== localstore.selectedListId);
     localstore.selectedListId = null;
     localstore.save();
     addProject();
-  }
-
-  deleteProjectBtn.addEventListener('click', deleteProject);
-  
+  });
   return { addProject };
 }
 export default Project;
