@@ -94,7 +94,7 @@ function Project() {
       }
     });
   };
-  
+
   const markCompleted = (e) => {
     if (e.target.checked) {
       e.target.parentElement.classList.add('completed');
@@ -109,7 +109,7 @@ function Project() {
     localstore.save();
   };
 
-  const scanTaskList = () =>{
+  const scanTaskList = () => {
     for (let i = 0; i < taskListChildren.length; i += 1) {
       const taskListItem = taskListChildren[i];
       const checkBox = taskListItem.getElementsByTagName('input')[0];
