@@ -64,6 +64,16 @@ function Project() {
     });
   };
 
+  const scanTaskList = () => {
+    for (let i = 0; i < taskListChildren.length; i += 1) {
+      const taskListItem = taskListChildren[i];
+      const checkBox = taskListItem.getElementsByTagName('input')[0];
+      const deleteButton = taskListItem.getElementsByTagName('button')[0];
+      checkBox.addEventListener('click', markCompleted);
+      deleteButton.addEventListener('click', deleteTasks);
+    }
+  };
+
   const addProject = () => {
     reset.clearPrevious(projectList);
     renderProject();
@@ -122,16 +132,6 @@ function Project() {
     const child = e.target.parentElement.parentElement;
     taskList.removeChild(child);
     localstore.save();
-  };
-
-  const scanTaskList = () => {
-    for (let i = 0; i < taskListChildren.length; i += 1) {
-      const taskListItem = taskListChildren[i];
-      const checkBox = taskListItem.getElementsByTagName('input')[0];
-      const deleteButton = taskListItem.getElementsByTagName('button')[0];
-      checkBox.addEventListener('click', markCompleted);
-      deleteButton.addEventListener('click', deleteTasks);
-    }
   };
 
   const makeNewProject = (e) => {
