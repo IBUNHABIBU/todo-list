@@ -2,7 +2,7 @@ import Clear from './clear';
 
 import LocalSaver from './localDb';
 
-function Project(){
+function Project() {
   const reset = Clear();
   const localstore = LocalSaver();
   const projectList = document.querySelector('.project-list');
@@ -16,7 +16,6 @@ function Project(){
   const taskDescription = document.getElementById('description');
   const taskDate = document.getElementById('datetime');
   const newTask = document.querySelector('[data-task-form]');
-  
   const createTask = (title, description, date, priority) => {
     return {
       title, description, date, priority,
@@ -76,9 +75,9 @@ function Project(){
     localstore.save();
     addProject();
   };
-  
+
   projectList.addEventListener('click', chooseProject);
-  
+
   const createProject = (projectName) => {
     return { id: Date.now().toString(), name: projectName, tasks: [] };
   };
