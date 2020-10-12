@@ -183,8 +183,8 @@ li {
   justify-content: space-between;
 }
 
-@media screen and (max-width: 768px){
- input{
-   margin-bottom: 1rem;
- }
+@media screen and (max-width: 768px) {
+  input {
+    margin-bottom: 1rem;
+  }
 }
