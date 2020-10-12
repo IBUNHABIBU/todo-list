@@ -1,4 +1,4 @@
-function Clear(){
+const Clear = () => {
   const projectList = document.querySelector('.project-list');
   function clearPrevious(projectList) {
     while (projectList.firstChild) {

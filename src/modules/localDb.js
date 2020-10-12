@@ -3,7 +3,7 @@ function LocalSaver(){
   const SELECTED_ID_KEY = 'task.selectedListId';
   let lists = JSON.parse(localStorage.getItem(LIST_KEY)) || [];
   let selectedListId = localStorage.getItem(SELECTED_ID_KEY);
-  function save() {
+  const save = () => {
     localStorage.setItem(LIST_KEY, JSON.stringify(lists));
     localStorage.setItem(SELECTED_ID_KEY, selectedListId);
   }

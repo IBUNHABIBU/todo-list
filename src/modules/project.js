@@ -21,7 +21,8 @@ function Project(){
     return {
       title, description, date, priority,
     };
-  }
+  };
+
   const buildTask = (e) => {
     e.preventDefault();
     const taskValue = taskInput.value;
@@ -37,7 +38,7 @@ function Project(){
     selectedList.tasks.push(task);
     localstore.save();
     addProject();
-  }
+  };
 
   const renderTasks = (selectedProject) => {
     selectedProject.tasks.forEach(task => {
@@ -66,20 +67,21 @@ function Project(){
       taskListItem.appendChild(taskButton);
       taskList.appendChild(taskListItem);
     });
-  }
+  };
+
   const chooseProject = (e) => {
     if (e.target.tagName.toLowerCase() === 'li') {
       localstore.selectedListId = e.target.dataset.listId;
     }
     localstore.save();
     addProject();
-  }
+  };
   
   projectList.addEventListener('click', chooseProject);
   
   const createProject = (projectName) => {
     return { id: Date.now().toString(), name: projectName, tasks: [] };
-  }
+  };
 
   const renderProject = () => {
     localstore.lists.forEach(list => {
@@ -92,7 +94,7 @@ function Project(){
         projectTitle.innerText = list.name;
       }
     });
-  }
+  };
   
   const markCompleted = (e) => {
     if (e.target.checked) {
@@ -100,13 +102,14 @@ function Project(){
     } else {
       e.target.parentElement.classList.remove('completed');
     }
-  }
+  };
 
   const deleteTasks = (e) => {
     const child = e.target.parentElement.parentElement;
     taskList.removeChild(child);
     localstore.save();
-  }
+  };
+
   const scanTaskList = () =>{
     for (let i = 0; i < taskListChildren.length; i += 1) {
       const taskListItem = taskListChildren[i];
@@ -115,7 +118,8 @@ function Project(){
       checkBox.addEventListener('click', markCompleted);
       deleteButton.addEventListener('click', deleteTasks);
     }
-  }
+  };
+
   const addProject = () => {
     reset.clearPrevious(projectList);
     renderProject();
@@ -129,7 +133,7 @@ function Project(){
     }
     localstore.save();
     scanTaskList();
-  }
+  };
 
   const makeNewProject = (e) => {
     e.preventDefault();
@@ -141,7 +145,8 @@ function Project(){
     localstore.lists.push(list);
     addProject();
     localstore.save();
-  }
+  };
+
   newProject.addEventListener('submit', makeNewProject);
 
   const deleteProject = (e) => {
@@ -150,13 +155,13 @@ function Project(){
     localstore.selectedListId = null;
     localstore.save();
     addProject();
-  }
+  };
 
   deleteProjectBtn.addEventListener('click', deleteProject);
 
   const bindEvent = () => {
     newTask.addEventListener('submit', buildTask);
-  }
+  };
 
   return { addProject, bindEvent };
 }
