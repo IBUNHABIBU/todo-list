@@ -7,6 +7,7 @@ function Tasker() {
   function construct() {
     project.bindEvent();
   }
+  project.addProject();
   return { construct };
 }
 const todo = Tasker();
