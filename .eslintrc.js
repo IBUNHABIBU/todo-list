@@ -3,7 +3,6 @@ module.exports = {
         "browser": true,
         "es2021": true
     },
-    "extends": "plugin:react/recommended",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -11,6 +10,9 @@ module.exports = {
         "ecmaVersion": 12,
         "sourceType": "module"
     },
+    "plugins": [
+        "react"
+    ],
     "rules": {
     }
 };
