@@ -16,6 +16,7 @@ function Project() {
   const taskDate = document.getElementById('datetime');
   const newTask = document.querySelector('[data-task-form]');
   const taskList = document.getElementById('tasks');
+  const taskListChildren = taskList.children;
   const createTask = (title, description, date, priority) => {
     return { title, description, date, priority, };
   };
