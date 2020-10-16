@@ -66,12 +66,7 @@ article {
   background: #efefef;
 }
 
-.task.completed {
-  text-decoration: line-through;
-  color: gray;
-}
-
-.task.completed span {
+[type="checkbox"]:checked + div {
   text-decoration: line-through;
   color: gray;
 }
@@ -100,10 +95,6 @@ form input {
 #datetime {
   width: 9.6rem;
 }
-
-/* input[type='date']::before {
-  content: attr(placeholder);
-} */
 
 .task {
   background: rgb(250, 250, 250);

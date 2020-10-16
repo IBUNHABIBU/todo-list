@@ -35,6 +35,7 @@ const Tasker = (() => {
       taskListItem.setAttribute('class', 'task');
       const taskCheckBox = document.createElement('input');
       taskCheckBox.id = task.id;
+      taskCheckBox.checked = task.completed;
       taskCheckBox.setAttribute('type', 'checkbox');
       const taskElement = document.createElement('span');
       const descriptionElement = document.createElement('span');
@@ -49,12 +50,14 @@ const Tasker = (() => {
       dateElement.innerHTML = task.date;
       taskElement.innerHTML = task.title;
       taskListItem.appendChild(taskCheckBox);
-      taskListItem.appendChild(taskElement);
-      taskListItem.appendChild(descriptionElement);
+      const spanDiv = document.createElement('div')
+      spanDiv.appendChild(taskElement);
+      spanDiv.appendChild(descriptionElement);
       taskButton.appendChild(taskTrash);
-      taskListItem.appendChild(dateElement);
-      taskListItem.appendChild(priorityElement);
-      taskListItem.appendChild(taskButton);
+      spanDiv.appendChild(dateElement);
+      spanDiv.appendChild(priorityElement);
+      spanDiv.appendChild(taskButton);
+      taskListItem.appendChild(spanDiv);
       taskList.appendChild(taskListItem);
     });
   }
@@ -94,7 +97,7 @@ const Tasker = (() => {
     addProject();
   });
 
-  function createTask(title, description, date, priority,completed = false) {
+  function createTask(title, description, date, priority,completed ) {
     return {
       id: Date.now().toString(), title, description, date, priority, completed,
     };
@@ -118,14 +121,11 @@ const Tasker = (() => {
   }
 
   function markCompleted(e) {
-    if (e.target.checked) {
+    if (e.target.tagName.toLowerCase() === 'input') {
       const selectedList = lists.find(list => list.id === selectedListId)
       const selectedTask = selectedList.tasks.find(task => task.id === e.target.id)
       selectedTask.completed = e.target.checked;
-      e.target.parentElement.classList.add('completed');
-      console.log(selectedTask);
-    }  else {
-      e.target.parentElement.classList.remove('completed');
+      save();
     }
   }
 
@@ -137,7 +137,6 @@ const Tasker = (() => {
       const child = e.target.parentElement.parentElement;
       taskList.removeChild(child);
       save();
-      console.log(selectedList.tasks);
     };
   }
   function scanTaskList() {
