@@ -1,4 +1,4 @@
-function LocalSaver() {
+const Data = (() => {
   const LIST_KEY = 'task.lists';
   const SELECTED_ID_KEY = 'task.selectedListId';
   const lists = JSON.parse(localStorage.getItem(LIST_KEY)) || [];
@@ -9,5 +9,5 @@ function LocalSaver() {
   };
 
   return { save, lists, selectedListId };
-}
-export default LocalSaver;
+})
+export default Data;

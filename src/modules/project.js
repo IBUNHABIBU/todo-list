@@ -21,6 +21,7 @@ function Project() {
   });
 
   const renderTasks = (selectedProject) => {
+    console.log(selectedProject)
     selectedProject.tasks.forEach(task => {
       const taskListItem = document.createElement('li');
       taskListItem.setAttribute('class', 'task');
@@ -121,9 +122,9 @@ function Project() {
   const chooseProject = (e) => {
     if (e.target.tagName.toLowerCase() === 'li') {
       localstore.selectedListId = e.target.dataset.listId;
+      localstore.save();
+      addProject();
     }
-    localstore.save();
-    addProject();
   };
 
   projectList.addEventListener('click', chooseProject);
