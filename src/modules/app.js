@@ -131,10 +131,10 @@ const Tasker = (() => {
 
   function deleteTasks(e) {
     if(e.target.tagName.toLowerCase() === 'i'){
-      const taskId = e.target.parentElement.parentElement.firstChild.id
-      const selectedList = lists.find(list => list.id === selectedListId)
-      selectedList.tasks = selectedList.tasks.filter(task => task.id !== taskId)
-      const child = e.target.parentElement.parentElement;
+      let taskId = e.target.parentElement.parentElement.parentElement.firstChild.id;
+      const selectedList = lists.find(list => list.id === selectedListId);
+      selectedList.tasks = selectedList.tasks.filter(task => task.id !== taskId);
+      const child = e.target.parentElement.parentElement.parentElement;
       taskList.removeChild(child);
       save();
     };

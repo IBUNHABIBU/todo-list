@@ -71,6 +71,9 @@ article {
   color: gray;
 }
 
+li span{
+  margin-right: 1rem;
+}
 aside {
   padding: 4rem;
   background: white;
