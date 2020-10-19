@@ -10,17 +10,18 @@ const el = (() => {
   const newProject = document.querySelector('[data-new-project]');
   const newTask = document.querySelector('[data-task-form]');
   const priority = document.querySelector('input[name="priority"]:checked');
-  return { taskInput,
-     taskDescription,
-      taskDate, 
-      taskList, 
-      projectList, 
-      deleteProjectBtn, 
-      projectTitle, 
-      aside,
-      newProject, 
-      newTask, 
-      priority
-  }
+  return {
+    taskInput,
+    taskDescription,
+    taskDate, 
+    taskList, 
+    projectList, 
+    deleteProjectBtn, 
+    projectTitle, 
+    aside,
+    newProject, 
+    newTask, 
+    priority
+  };
 })()
 export default el;
