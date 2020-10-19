@@ -1,7 +1,8 @@
 import '../css/style.css';
 
 import el from './dom';
-const Tasker = (() => {
+
+const Tasker = () => {
   const LIST_KEY = 'task.lists';
   const SELECTED_ID_KEY = 'task.selectedListId';
   let lists = JSON.parse(localStorage.getItem(LIST_KEY)) || [];
@@ -86,11 +87,8 @@ const Tasker = (() => {
     addProject();
   });
 
-  const createTask = (title, description, date, priority, completed) => {
-    return {
-      id: Date.now().toString(), title, description, date, priority, completed,
-    };
-  };
+  const createTask = (title, description, date, priority, completed) => ({ id: Date.now().toString(), title, description, date, priority, completed, })
+
 
   const buildTask = (e) => {
     e.preventDefault();
@@ -150,11 +148,7 @@ const Tasker = (() => {
     addProject();
   });
 
-  const createProject = (projectName) => {
-    return {
-      id: Date.now().toString(), name: projectName, tasks: []
-    };
-  };
+  const createProject = (projectName) => ({ id: Date.now().toString(), name: projectName, tasks: [], })
 
   const makeNewProject = (e) => {
     e.preventDefault();
@@ -178,4 +172,6 @@ const Tasker = (() => {
   };
 
   return { construct };
-})().construct();
+};
+const tasker = Tasker();
+tasker.construct();
