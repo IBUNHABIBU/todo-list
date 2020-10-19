@@ -75,6 +75,7 @@ const Tasker = () => {
       el.aside.style.display = 'block';
       clearPrevious(el.taskList);
       renderTasks(selectedProject);
+      scanTaskList();
     }
     save();
   };
@@ -93,10 +94,11 @@ const Tasker = () => {
 
   const buildTask = (e) => {
     e.preventDefault();
+    const priority = document.querySelector('input[name="priority"]:checked');
     const taskValue = el.taskInput.value;
     const descriptionValue = el.taskDescription.value;
     const dateValue = el.taskDate.value;
-    const priorityValue = el.priority.value;
+    const priorityValue = priority.value;
     const task = createTask(taskValue, descriptionValue, dateValue, priorityValue);
     el.taskInput.value = null;
     el.taskDescription.value = null;
@@ -171,7 +173,6 @@ const Tasker = () => {
 
   const construct = () => {
     bindEvent();
-    scanTaskList();
   };
 
   return { construct };
