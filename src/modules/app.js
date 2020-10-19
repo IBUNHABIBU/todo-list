@@ -1,23 +1,12 @@
 import '../css/style.css';
 
-import Data from './localDb';
+import el from './dom';
 const Tasker = (() => {
-  const taskInput = document.getElementById('title');
-  const taskDescription = document.getElementById('description');
-  const taskDate = document.getElementById('datetime');
-  const taskList = document.getElementById('tasks');
-  const projectList = document.querySelector('.project-list');
-  const deleteProjectBtn = document.querySelector('[data-delete-project]');
-  const projectTitle = document.querySelector('.project-title');
-  const aside = document.querySelector('aside');
-  const newProject = document.querySelector('[data-new-project]');
-  const newTask = document.querySelector('[data-task-form]');
-  
   const LIST_KEY = 'task.lists';
   const SELECTED_ID_KEY = 'task.selectedListId';
   let lists = JSON.parse(localStorage.getItem(LIST_KEY)) || [];
   let selectedListId = localStorage.getItem(SELECTED_ID_KEY);
-  const taskListChildren = taskList.children;
+  const taskListChildren = el.taskList.children;
   const save = () => {
     localStorage.setItem(LIST_KEY, JSON.stringify(lists));
     localStorage.setItem(SELECTED_ID_KEY, selectedListId);
@@ -58,7 +47,7 @@ const Tasker = (() => {
       spanDiv.appendChild(priorityElement);
       spanDiv.appendChild(taskButton);
       taskListItem.appendChild(spanDiv);
-      taskList.appendChild(taskListItem);
+      el.taskList.appendChild(taskListItem);
     });
   }
 
@@ -67,29 +56,29 @@ const Tasker = (() => {
       const li = document.createElement('li');
       li.dataset.listId = list.id;
       li.innerText = list.name;
-      projectList.appendChild(li);
+      el.projectList.appendChild(li);
       if (list.id === selectedListId) {
         li.classList.add('selected');
-        projectTitle.innerText = list.name;
+        el.projectTitle.innerText = list.name;
       }
     });
   }
 
   const addProject = () => {
-    clearPrevious(projectList);
+    clearPrevious(el.projectList);
     renderProject();
     const selectedProject = lists.find(list => list.id === selectedListId);
     if (selectedListId === null) {
-      aside.style.display = 'none';
+      el.aside.style.display = 'none';
     } else {
-      aside.style.display = 'block';
-      clearPrevious(taskList);
+      el.aside.style.display = 'block';
+      clearPrevious(el.taskList);
       renderTasks(selectedProject);
     }
     save();
   }
  
-  deleteProjectBtn.addEventListener('click', e => {
+  el.deleteProjectBtn.addEventListener('click', e => {
     e.preventDefault();
     lists = lists.filter(list => list.id !== selectedListId);
     selectedListId = null;
@@ -105,15 +94,14 @@ const Tasker = (() => {
 
   const buildTask = (e) => {
     e.preventDefault();
-    const taskValue = taskInput.value;
-    const descriptionValue = taskDescription.value;
-    const dateValue = taskDate.value;
-    const priority = document.querySelector('input[name="priority"]:checked');
-    const priorityValue = priority.value;
+    const taskValue = el.taskInput.value;
+    const descriptionValue = el.taskDescription.value;
+    const dateValue = el.taskDate.value;
+    const priorityValue = el.priority.value;
     const task = createTask(taskValue, descriptionValue, dateValue, priorityValue);
-    taskInput.value = null;
-    taskDescription.value = null;
-    taskDate.value = null;
+    el.taskInput.value = null;
+    el.taskDescription.value = null;
+    el.taskDate.value = null;
     const selectedList = lists.find(list => list.id === selectedListId);
     selectedList.tasks.push(task);
     save();
@@ -135,7 +123,7 @@ const Tasker = (() => {
       const selectedList = lists.find(list => list.id === selectedListId);
       selectedList.tasks = selectedList.tasks.filter(task => task.id !== taskId);
       const child = e.target.parentElement.parentElement.parentElement;
-      taskList.removeChild(child);
+      el.taskList.removeChild(child);
       save();
     };
   }
@@ -151,10 +139,10 @@ const Tasker = (() => {
 
  
   const bindEvent = () => {
-    newTask.addEventListener('submit',buildTask);
+    el.newTask.addEventListener('submit',buildTask);
   }
 
-  projectList.addEventListener('click', e => {
+  el.projectList.addEventListener('click', e => {
     if (e.target.tagName.toLowerCase() === 'li') {
       selectedListId = e.target.dataset.listId;
     }
@@ -177,7 +165,7 @@ const Tasker = (() => {
     addProject();
     save();
   }
-  newProject.addEventListener('submit', makeNewProject);
+  el.newProject.addEventListener('submit', makeNewProject);
 
   addProject();
 
@@ -186,4 +174,4 @@ const Tasker = (() => {
     scanTaskList();
   }
   return { construct };
-})(Data).construct();
+})().construct();
