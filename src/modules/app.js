@@ -10,13 +10,13 @@ const Tasker = (() => {
   const save = () => {
     localStorage.setItem(LIST_KEY, JSON.stringify(lists));
     localStorage.setItem(SELECTED_ID_KEY, selectedListId);
-  }
+  };
 
   const clearPrevious = (projectList) => {
     while (projectList.firstChild) {
       projectList.removeChild(projectList.firstChild);
     }
-  }
+  };
 
   const renderTasks = (selectedProject) => {
     selectedProject.tasks.forEach(task => {
@@ -49,7 +49,7 @@ const Tasker = (() => {
       taskListItem.appendChild(spanDiv);
       el.taskList.appendChild(taskListItem);
     });
-  }
+  };
 
   const renderProject = () => {
     lists.forEach(list => {
@@ -62,7 +62,7 @@ const Tasker = (() => {
         el.projectTitle.innerText = list.name;
       }
     });
-  }
+  };
 
   const addProject = () => {
     clearPrevious(el.projectList);
@@ -76,7 +76,7 @@ const Tasker = (() => {
       renderTasks(selectedProject);
     }
     save();
-  }
+  };
  
   el.deleteProjectBtn.addEventListener('click', e => {
     e.preventDefault();
@@ -90,7 +90,7 @@ const Tasker = (() => {
     return {
       id: Date.now().toString(), title, description, date, priority, completed,
     };
-  }
+  };
 
   const buildTask = (e) => {
     e.preventDefault();
@@ -106,7 +106,7 @@ const Tasker = (() => {
     selectedList.tasks.push(task);
     save();
     addProject();
-  }
+  };
 
   const markCompleted = (e) => {
     if (e.target.tagName.toLowerCase() === 'input') {
@@ -115,7 +115,7 @@ const Tasker = (() => {
       selectedTask.completed = e.target.checked;
       save();
     }
-  }
+  };
 
   const deleteTasks = (e) => {
     if(e.target.tagName.toLowerCase() === 'i'){
@@ -126,7 +126,8 @@ const Tasker = (() => {
       el.taskList.removeChild(child);
       save();
     };
-  }
+  };
+
   const scanTaskList = () => {
     for (let i = 0; i < taskListChildren.length; i += 1) {
       const taskListItem = taskListChildren[i];
@@ -135,12 +136,11 @@ const Tasker = (() => {
       checkBox.addEventListener('click', markCompleted);
       deleteButton.addEventListener('click', deleteTasks);
     }
-  }
+  };
 
- 
   const bindEvent = () => {
     el.newTask.addEventListener('submit',buildTask);
-  }
+  };
 
   el.projectList.addEventListener('click', e => {
     if (e.target.tagName.toLowerCase() === 'li') {
@@ -152,7 +152,7 @@ const Tasker = (() => {
 
   const createProject = (projectName) => {
     return { id: Date.now().toString(), name: projectName, tasks: [] };
-  }
+  };
 
   const makeNewProject = (e) => {
     e.preventDefault();
@@ -164,7 +164,8 @@ const Tasker = (() => {
     lists.push(list);
     addProject();
     save();
-  }
+  };
+
   el.newProject.addEventListener('submit', makeNewProject);
 
   addProject();
@@ -172,6 +173,7 @@ const Tasker = (() => {
   const construct = () => {
     bindEvent();
     scanTaskList();
-  }
+  };
+
   return { construct };
 })().construct();
