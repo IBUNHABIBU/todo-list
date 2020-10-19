@@ -65,6 +65,36 @@ const Tasker = () => {
     });
   };
 
+  const markCompleted = (e) => {
+    if (e.target.tagName.toLowerCase() === 'input') {
+      const selectedList = lists.find(list => list.id === selectedListId);
+      const selectedTask = selectedList.tasks.find(task => task.id === e.target.id);
+      selectedTask.completed = e.target.checked;
+      save();
+    }
+  };
+
+  const deleteTasks = (e) => {
+    if (e.target.tagName.toLowerCase() === 'i') {
+      const taskId = e.target.parentElement.parentElement.parentElement.firstChild.id;
+      const selectedList = lists.find(list => list.id === selectedListId);
+      selectedList.tasks = selectedList.tasks.filter(task => task.id !== taskId);
+      const child = e.target.parentElement.parentElement.parentElement;
+      el.taskList.removeChild(child);
+      save();
+    }
+  };
+
+  const scanTaskList = () => {
+    for (let i = 0; i < taskListChildren.length; i += 1) {
+      const taskListItem = taskListChildren[i];
+      const checkBox = taskListItem.getElementsByTagName('input')[0];
+      const deleteButton = taskListItem.getElementsByTagName('button')[0];
+      checkBox.addEventListener('click', markCompleted);
+      deleteButton.addEventListener('click', deleteTasks);
+    }
+  };
+
   const addProject = () => {
     clearPrevious(el.projectList);
     renderProject();
@@ -109,35 +139,6 @@ const Tasker = () => {
     addProject();
   };
 
-  const markCompleted = (e) => {
-    if (e.target.tagName.toLowerCase() === 'input') {
-      const selectedList = lists.find(list => list.id === selectedListId);
-      const selectedTask = selectedList.tasks.find(task => task.id === e.target.id);
-      selectedTask.completed = e.target.checked;
-      save();
-    }
-  };
-
-  const deleteTasks = (e) => {
-    if (e.target.tagName.toLowerCase() === 'i') {
-      const taskId = e.target.parentElement.parentElement.parentElement.firstChild.id;
-      const selectedList = lists.find(list => list.id === selectedListId);
-      selectedList.tasks = selectedList.tasks.filter(task => task.id !== taskId);
-      const child = e.target.parentElement.parentElement.parentElement;
-      el.taskList.removeChild(child);
-      save();
-    }
-  };
-
-  const scanTaskList = () => {
-    for (let i = 0; i < taskListChildren.length; i += 1) {
-      const taskListItem = taskListChildren[i];
-      const checkBox = taskListItem.getElementsByTagName('input')[0];
-      const deleteButton = taskListItem.getElementsByTagName('button')[0];
-      checkBox.addEventListener('click', markCompleted);
-      deleteButton.addEventListener('click', deleteTasks);
-    }
-  };
 
   const bindEvent = () => {
     el.newTask.addEventListener('submit', buildTask);

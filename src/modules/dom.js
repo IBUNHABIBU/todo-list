@@ -9,7 +9,7 @@ const el = (() => {
   const aside = document.querySelector('aside');
   const newProject = document.querySelector('[data-new-project]');
   const newTask = document.querySelector('[data-task-form]');
- 
+
   return {
     taskInput,
     taskDescription,
