@@ -89,7 +89,7 @@ const Tasker = () => {
 
   const createTask = (title, description, date, priority, completed) => ({
     id: Date.now().toString(), title, description, date, priority, completed,
-  })
+  });
 
   const buildTask = (e) => {
     e.preventDefault();
@@ -151,7 +151,7 @@ const Tasker = () => {
 
   const createProject = (projectName) => ({
     id: Date.now().toString(), name: projectName, tasks: [],
-  })
+  });
 
   const makeNewProject = (e) => {
     e.preventDefault();

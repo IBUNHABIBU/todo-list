@@ -21,7 +21,7 @@ const el = (() => {
     aside,
     newProject,
     newTask,
-    priority
+    priority,
   };
 })();
 export default el;
