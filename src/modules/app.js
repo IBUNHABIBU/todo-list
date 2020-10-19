@@ -118,7 +118,7 @@ const Tasker = (() => {
   };
 
   const deleteTasks = (e) => {
-    if(e.target.tagName.toLowerCase() === 'i'){
+    if (e.target.tagName.toLowerCase() === 'i') {
       const taskId = e.target.parentElement.parentElement.parentElement.firstChild.id;
       const selectedList = lists.find(list => list.id === selectedListId);
       selectedList.tasks = selectedList.tasks.filter(task => task.id !== taskId);
@@ -151,7 +151,9 @@ const Tasker = (() => {
   });
 
   const createProject = (projectName) => {
-    return { id: Date.now().toString(), name: projectName, tasks: [] };
+    return {
+      id: Date.now().toString(), name: projectName, tasks: []
+    };
   };
 
   const makeNewProject = (e) => {

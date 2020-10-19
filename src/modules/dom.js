@@ -13,15 +13,15 @@ const el = (() => {
   return {
     taskInput,
     taskDescription,
-    taskDate, 
-    taskList, 
-    projectList, 
-    deleteProjectBtn, 
-    projectTitle, 
+    taskDate,
+    taskList,
+    projectList,
+    deleteProjectBtn,
+    projectTitle,
     aside,
-    newProject, 
-    newTask, 
+    newProject,
+    newTask,
     priority
   };
-})()
+})();
 export default el;
