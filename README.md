@@ -1,5 +1,17 @@
-# Todo-list app
- Is the web based application where user can schedule tasks which are supposed to be done.
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+
+<br />
+
+<p align="center">
+  <a href="git@github.com:IBUNHABIBU/restaurant_page.git">
+    <p align="center"> <img src="https://raw.githubusercontent.com/github/explore/b7c8510756ee50efb38d1f01896e72b7a9737296/topics/javascript/javascript.png" alt="Phaser" width="100" height="100"> </p>
+  </a>
+
+  <h2 align="center">TODO LIST APP</h2>
+<h3 align = "center"> Is the web based application where user can schedule tasks which are supposed to be done.</h3>
  <div align="center">
   <!-- ![screenshot](https://github.com/IBUNHABIBU/todo-list/blob/feature/src/images/todolist.gif) -->
  <img src="https://github.com/IBUNHABIBU/todo-list/blob/feature/src/images/todolist.gif" >
