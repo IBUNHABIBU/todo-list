@@ -6,7 +6,7 @@
 <br />
 
 <p align="center">
-  <a href="git@github.com:IBUNHABIBU/restaurant_page.git">
+  <a href="git@github.com:IBUNHABIBU/todo-list.git">
     <p align="center"> <img src="https://raw.githubusercontent.com/github/explore/b7c8510756ee50efb38d1f01896e72b7a9737296/topics/javascript/javascript.png" alt="Phaser" width="100" height="100"> </p>
   </a>
 
@@ -66,11 +66,11 @@ This project is [MIT](LICENCE) licensed.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/IBUNHABIBU/tic-tac-toe-game.svg?style=flat-square
-[contributors-url]: https://github.com/IBUNHABIBU/tic-tac-toe-game/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/IBUNHABIBU/tic-tac-toe-game.svg?style=flat-square
-[forks-url]: https://github.com/IBUNHABIBU/tic-tac-toe-game/network/members
-[stars-shield]: https://img.shields.io/github/stars/IBUNHABIBU/tic-tac-toe-game.svg?style=flat-square
-[stars-url]: https://github.com/IBUNHABIBU/tic-tac-toe-game/stargazers
-[issues-shield]: https://img.shields.io/github/issues/IBUNHABIBU/tic-tac-toe-game.svg?style=flat-square
-[issues-url]: https://github.com/IBUNHABIBU/tic-tac-toe-game/issues
+[contributors-shield]: https://img.shields.io/github/contributors/IBUNHABIBU/todo-list.svg?style=flat-square
+[contributors-url]: https://github.com/IBUNHABIBU/todo-list/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/IBUNHABIBU/todo-list.svg?style=flat-square
+[forks-url]: https://github.com/IBUNHABIBU/todo-list/network/members
+[stars-shield]: https://img.shields.io/github/stars/IBUNHABIBU/todo-list.svg?style=flat-square
+[stars-url]: https://github.com/IBUNHABIBU/todo-list/stargazers
+[issues-shield]: https://img.shields.io/github/issues/IBUNHABIBU/todo-list.svg?style=flat-square
+[issues-url]: https://github.com/IBUNHABIBU/todo-list/issues
