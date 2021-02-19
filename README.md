@@ -1,7 +1,8 @@
 # Todo-list app
  Is the web based application where user can schedule tasks which are supposed to be done.
  <div align="center">
-![screenshot](https://github.com/IBUNHABIBU/todo-list/blob/feature/src/images/todolist.gif)
+  <!-- ![screenshot](https://github.com/IBUNHABIBU/todo-list/blob/feature/src/images/todolist.gif) -->
+ <img src="https://github.com/IBUNHABIBU/todo-list/blob/feature/src/images/todolist.gif" >
  </div>
 
 ## Built with
