@@ -14,9 +14,9 @@
 <h3 align = "center"> Is the web based application where user can schedule tasks which are supposed to be done.</h3>
 
   <p align="center">
-    <a href="https://github.com/IBUNHABIBU/tic-tac-toe-game/issues">Report Bug</a>
+    <a href="https://github.com/IBUNHABIBU/todo-list/issues">Report Bug</a>
     · 
-    <a href="https://github.com/IBUNHABIBU/tic-tac-toe-game/issues">Request Feature</a>
+    <a href="https://github.com/IBUNHABIBU/todo-list/issues">Request Feature</a>
   </p>
   
   <br/>
