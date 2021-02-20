@@ -12,10 +12,17 @@
 
   <h2 align="center">TODO LIST APP</h2>
 <h3 align = "center"> Is the web based application where user can schedule tasks which are supposed to be done.</h3>
+
+  <p align="center">
+    <a href="https://github.com/IBUNHABIBU/tic-tac-toe-game/issues">Report Bug</a>
+    · 
+    <a href="https://github.com/IBUNHABIBU/tic-tac-toe-game/issues">Request Feature</a>
+  </p>
  <div align="center">
   <!-- ![screenshot](https://github.com/IBUNHABIBU/todo-list/blob/feature/src/images/todolist.gif) -->
  <img src="https://github.com/IBUNHABIBU/todo-list/blob/feature/src/images/todolist.gif" >
  </div>
+ </p>
 
 ## Built with
 * HTML
