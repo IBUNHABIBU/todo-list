@@ -19,7 +19,7 @@
     <a href="https://github.com/IBUNHABIBU/tic-tac-toe-game/issues">Request Feature</a>
   </p>
   
-  <br>
+  <br/>
  <div align="center">
   <!-- ![screenshot](https://github.com/IBUNHABIBU/todo-list/blob/feature/src/images/todolist.gif) -->
  <img src="https://github.com/IBUNHABIBU/todo-list/blob/feature/src/images/todolist.gif" >
